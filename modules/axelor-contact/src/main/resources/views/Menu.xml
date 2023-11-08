@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <menuitem name="menu-contact-book"
+              title="Address Book" />
+
+    <menuitem name="menu-contact-book-friends"
+              parent="menu-contact-book"
+              title="All Contact"
+              action="contact.all"/>
+
+    <menuitem name="menu-contact-book-countries"
+              parent="menu-contact-book"
+              title="All Country"
+              action="country.all"/>
+
+    <menuitem name="menu-contact-book-titles"
+              parent="menu-contact-book"
+              title="All Titles"
+              action="title.all"/>
+
+    <menuitem name="menu-contact-book-addresses"
+              parent="menu-contact-book"
+              title="All Addresses"
+              action="address.all"/>
+
+    <action-view name="address.all"
+                 title="Addresses"
+                 model="com.axelor.contact.db.Address">
+        <view type="grid" name="address-grid"/>
+        <view type="form" name="address-form"/>
+    </action-view>
+
+    <action-view name="title.all"
+                 title="Titles"
+                 model="com.axelor.contact.db.Title">
+        <view type="grid" name="title-grid"/>
+        <view type="form" name="title-form"/>
+    </action-view>
+
+    <action-view name="contact.all"
+                 title="Contacts"
+                 model="com.axelor.contact.db.Contact">
+        <view type="grid" name="contact-grid"/>
+        <view type="form" name="contact-form"/>
+    </action-view>
+
+    <action-view name="country.all"
+                 title="Countries"
+                 model="com.axelor.contact.db.Country">
+        <view type="grid" name="country-grid"/>
+        <view type="form" name="country-form"/>
+    </action-view>
+
+</object-views>

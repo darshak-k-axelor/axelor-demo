@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+
+    <module name="contact" package="com.axelor.contact.db" />
+
+    <entity name="Address">
+<!--        <many-to-one name="contact" ref="Contact" required="true" />-->
+        <string name="street" required="true" />
+        <string name="zip"  required="true" />
+        <string name="city"  required="true" />
+
+        <many-to-one name="country" ref="Country"/>
+        <string name="fullAddress" namecolumn="true" >
+            <![CDATA[
+                if (street == null && zip == null  && city == null) {
+                    return null;
+                }
+                return street + ", " + city + ", " + country.getName() + " - " + zip ;
+                ]]>
+        </string>
+
+    </entity>
+
+</domain-models>
