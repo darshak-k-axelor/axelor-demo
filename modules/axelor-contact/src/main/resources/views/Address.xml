@@ -16,19 +16,11 @@
           title="Address"
           model="com.axelor.contact.db.Address">
         <panel name="overviewPanel" title="Overview">
-
             <field name="street" />
             <field name="zip" />
             <field name="city" />
-            <field name="country" />
-
+            <field name="country" form-view="country-form" grid-view="country-grid"/>
         </panel>
-        <panel-related name="addressesPanel"
-                       field="addresses"
-                       form-view="address-form-popup">
-            <field name="name"/>
-            <field name="code"/>
-        </panel-related>
         <panel name="sidePanel" sidebar="true">
             <field name="createdOn"/>
             <field name="createdBy"/>
@@ -36,14 +28,4 @@
             <field name="updatedBy"/>
         </panel>
     </form>
-
-    <form name="address-form-popup"
-          title="Country"
-          model="com.axelor.contact.db.Country">
-        <panel title="Overview">
-            <field name="name"/>
-            <field name="code"/>
-        </panel>
-    </form>
-
 </object-views>

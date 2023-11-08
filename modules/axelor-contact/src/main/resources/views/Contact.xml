@@ -43,18 +43,7 @@
             </field>
         </panel>
         <panel name="postalAddressesPanel" title="Postal addresses" colSpan="12">
-            <field name="address" title="Postal Address">
-                <viewer><![CDATA[
-					<span >{{record.addresses.fullAddress}}</span>
-              ]]></viewer>
-                <editor x-show-titles="false">
-                    <panel colSpan="12" css="field-append">
-                        <field name="addresses" colSpan="12" canNew="true" required="true" form-view="address-form" grid-view="address-grid"/>
-                    </panel>
-                </editor>
-            </field>
-            <spacer/>
-
+            <field name="addresses" title="Postal Address" canNew="true" form-view="address-from" grid-view="address-grid"/>
         </panel>
         <panel name="sidePanel" sidebar="true">
             <field name="createdOn"/>
@@ -63,20 +52,4 @@
             <field name="updatedBy"/>
         </panel>
     </form>
-
-
-
-    <form name="contact-form-addresses-popup" title="Address"
-          model="com.axelor.contact.db.Address"
-          onNew="default-address-record" width="large">
-        <panel name="mainPanel" title="Address details" colSpan="12">
-            <field name="street"/>
-            <field name="city" />
-            <field name="zip"/>
-            <field name="country" form-view="country-form" grid-view="country-grid" canEdit="false"
-                   canNew="true" />
-
-        </panel>
-    </form>
-
 </object-views>
