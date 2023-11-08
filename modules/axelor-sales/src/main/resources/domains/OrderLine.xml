@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+
+    <module name="sales" package="com.axelor.sales.db"/>
+
+    <entity name="OrderLine">
+        <many-to-one name="product" ref="Product" required="true"/>
+        <string name="description" />
+        <decimal name="qty" precision="8" scale="2" />
+        <decimal name="unitPrice" precision="8" scale="2" />
+        <decimal name="exTaxTotal" precision="8" scale="2" />
+        <decimal name="taxRate" precision="8" scale="2" />
+        <decimal name="total" precision="8" scale="2" />
+    </entity>
+
+</domain-models>

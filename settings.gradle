@@ -44,7 +44,5 @@ rootProject.name = 'axelor-demo'
 
 // Include modules
 include "modules:axelor-contact"
-include 'axelor-sales'
 include 'modules:axelor-sales'
-findProject(':modules:axelor-sales')?.name = 'axelor-sales'
 
