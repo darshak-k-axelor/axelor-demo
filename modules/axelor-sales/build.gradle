@@ -1,0 +1,10 @@
+plugins {
+    id 'com.axelor.app'
+}
+
+axelor {
+    title = 'Axelor Sales'
+}
+dependencies {
+
+}
