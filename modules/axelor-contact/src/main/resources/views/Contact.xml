@@ -54,6 +54,7 @@
                 </editor>
             </field>
             <spacer/>
+
         </panel>
         <panel name="sidePanel" sidebar="true">
             <field name="createdOn"/>
