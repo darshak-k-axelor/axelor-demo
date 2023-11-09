@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <grid name="order-grid"
+          title="Orders"
+          model="com.axelor.apps.sales.db.Order">
+        <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
+        <field name="orderDate" />
+        <field name="confirmationDate" />
+        <field name="exTaxTotal" />
+        <field name="total" />
+        <field name="stateSelect" />
+    </grid>
+
+    <form name="order-form"
+          title="Orders"
+          model="com.axelor.apps.sales.db.Order">
+        <panel name="productOverviewPanel" title="Product Overview">
+            <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
+            <field name="orderDate" />
+            <field name="confirmationDate" />
+            <field name="exTaxTotal" />
+            <field name="total" />
+            <field name="stateSelect" />
+        </panel>
+    </form>
+
+</object-views>

@@ -6,7 +6,7 @@
 
     <grid name="address-grid"
           title="Addresses"
-          model="com.axelor.contact.db.Address">
+          model="com.axelor.apps.contact.db.Address">
         <field name="street" />
         <field name="zip" />
         <field name="city" />
@@ -14,7 +14,7 @@
 
     <form name="address-form"
           title="Address"
-          model="com.axelor.contact.db.Address">
+          model="com.axelor.apps.contact.db.Address">
         <panel name="overviewPanel" title="Overview">
             <field name="street" />
             <field name="zip" />

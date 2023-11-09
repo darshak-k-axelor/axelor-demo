@@ -6,14 +6,14 @@
 
     <grid name="title-grid"
           title="Titles"
-          model="com.axelor.contact.db.Title">
+          model="com.axelor.apps.contact.db.Title">
         <field name="name" />
         <field name="code" />
     </grid>
 
     <form name="title-form"
           title="Title"
-          model="com.axelor.contact.db.Title">
+          model="com.axelor.apps.contact.db.Title">
         <panel name="overviewPanel" title="Overview">
             <field name="name" colSpan="6"/>
             <field name="code" colSpan="6"/>

@@ -4,7 +4,9 @@ plugins {
 
 axelor {
     title = 'Axelor Sales'
+    description = "Axelor Sales Module"
 }
-dependencies {
 
+dependencies {
+    api project(":modules:axelor-contact")
 }

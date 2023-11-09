@@ -6,7 +6,7 @@
 
     <grid name="contact-grid"
           title="Contacts"
-          model="com.axelor.contact.db.Contact">
+          model="com.axelor.apps.contact.db.Contact">
         <field name="fullName" />
         <field name="email" />
         <field name="phone" />
@@ -14,7 +14,7 @@
         <field name="fullAddress" />
     </grid>
 
-    <form name="contact-form" title="Contact" model="com.axelor.contact.db.Contact">
+    <form name="contact-form" title="Contact" model="com.axelor.apps.contact.db.Contact">
         <panel name="imagePanel" title="Image">
             <field name="picture" showTitle="false" colSpan="2" widget="Image"/>
             <field name="fullName" readonly="false" colSpan="10">

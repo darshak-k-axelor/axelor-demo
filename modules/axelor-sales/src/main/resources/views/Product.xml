@@ -4,19 +4,21 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
 
-    <grid name="country-grid"
-          title="Countries"
-          model="com.axelor.apps.contact.db.Country">
+    <grid name="product-grid"
+          title="Product"
+          model="com.axelor.apps.sales.db.Product">
         <field name="name" />
         <field name="code" />
+        <field name="unitPrice" />
     </grid>
 
-    <form name="country-form"
-          title="Country"
-          model="com.axelor.apps.contact.db.Country">
-        <panel name="overviewPanel" title="Overview">
-            <field name="name" colSpan="6"/>
-            <field name="code" colSpan="6"/>
+    <form name="product-form"
+          title="Product"
+          model="com.axelor.apps.sales.db.Product">
+        <panel name="productOverviewPanel" title="Product Overview">
+            <field name="name" />
+            <field name="code" />
+            <field name="unitPrice" />
         </panel>
     </form>
 

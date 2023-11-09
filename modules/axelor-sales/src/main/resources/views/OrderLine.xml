@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <grid name="orderLine-grid"
+          title="Order Line"
+          model="com.axelor.apps.sales.db.OrderLine">
+        <field name="product" form-view="product-form" grid-view="product-grid"/>
+        <field name="description" />
+        <field name="qty" />
+        <field name="unitPrice" />
+        <field name="exTaxTotal" />
+        <field name="taxRate" />
+        <field name="total" />
+    </grid>
+
+    <form name="orderLine-form"
+          title="Order Line"
+          model="com.axelor.apps.sales.db.OrderLine">
+        <panel name="productOverviewPanel" title="Product Overview">
+            <field name="product" form-view="product-form" grid-view="product-grid"/>
+            <field name="description" />
+            <field name="qty" />
+            <field name="unitPrice" />
+            <field name="exTaxTotal" />
+            <field name="taxRate" />
+            <field name="total" />
+        </panel>
+    </form>
+
+</object-views>

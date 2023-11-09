@@ -4,7 +4,7 @@
                xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
   https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
 
-    <module name="contact" package="com.axelor.contact.db"/>
+    <module name="contact" package="com.axelor.apps.contact.db"/>
 
     <entity name="Contact">
         <many-to-one name="title" ref="Title"/>
