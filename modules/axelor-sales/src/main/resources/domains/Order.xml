@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+
+    <module name="sales" package="com.axelor.apps.sales.db"/>
+
+    <entity name="Order">
+        <many-to-one name="customer" ref="com.axelor.apps.contact.db.Contact" required="true" />
+        <date name="orderDate" required="true" default=""/>
+        <date name="confirmationDate"/>
+        <decimal name="exTaxTotal" precision="8" scale="2" />
+        <decimal name="total" precision="8" scale="2" />
+        <one-to-many name="orderLineList" ref="OrderLine" mappedBy="productOrder"/>
+        <integer name="stateSelect" />
+
+
+        <extra-code>
+            <![CDATA[
+              // STATE
+              public static final int STATUS_DRAFT = 0;
+              public static final int STATUS_VALIDATED = 1;
+            ]]>
+        </extra-code>
+
+
+        <track on="ALWAYS">
+            <field name="stateSelect"/>
+            <message if="stateSelect == 0" tag="warning" fields="status">Draft</message>
+            <message if="stateSelect == 1'" tag="success" >Order validated</message>
+        </track>
+    </entity>
+
+</domain-models>

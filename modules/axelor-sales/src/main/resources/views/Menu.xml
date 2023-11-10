@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <menuitem name="menu-sales"
+              title="Sales"  icon="fa-line-chart" icon-background="#e0a83c" />
+
+    <menuitem name="menu-sales-product"
+              parent="menu-sales"
+              title="Products"
+              action="product.all"  icon="fa-address-card-o" icon-background="#e0a83c"/>
+
+    <menuitem name="menu-sales-order"
+                parent="menu-sales"
+                title="Orders"
+                action="order.all" icon="fa-cart-plus"  icon-background="#e0a83c"/>
+
+    <menuitem name="menu-sales-orderLine"
+              parent="menu-sales"
+              title="Order Lines"
+              action="orderLine.all" icon="fa-shopping-cart"  icon-background="#e0a83c" />
+
+    <action-view name="product.all"
+                 title="Products"
+                 model="com.axelor.apps.sales.db.Product">
+        <view type="grid" name="product-grid"/>
+        <view type="form" name="product-form"/>
+    </action-view>
+
+    <action-view name="order.all"
+                 title="Orders"
+                 model="com.axelor.apps.sales.db.Order">
+        <view type="grid" name="order-grid"/>
+        <view type="form" name="order-form"/>
+    </action-view>
+
+    <action-view name="orderLine.all"
+                 title="OrderLines"
+                 model="com.axelor.apps.sales.db.OrderLine">
+        <view type="grid" name="orderLine-grid"/>
+        <view type="form" name="orderLine-form"/>
+    </action-view>
+
+</object-views>
