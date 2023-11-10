@@ -51,4 +51,5 @@
         <field name="total"  expr="eval: (qty * unitPrice * ( 100.0 + taxRate ) / 100.0)"/>
     </action-record>
 
+
 </object-views>

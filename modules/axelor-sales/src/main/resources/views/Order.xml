@@ -12,12 +12,12 @@
         <field name="confirmationDate" />
         <field name="exTaxTotal" />
         <field name="total" />
-        <field name="stateSelect" >
+        <field name="stateSelect"  if="">
 
         </field>
     </grid>
 
-    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large" onNew="action-group-sale-order-onnew">
+    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large" onNew="action-group-sale-order-onnew" readonlyIf="stateSelect == 1">
         <panel name="mainPanel" showTitle="false">
             <panel name="orderStatusPanel" colSpan="12">
                 <field name="orderStatus" showTitle="false" readonly="true" colSpan="3" css="label-bold bold">
@@ -26,8 +26,8 @@
                     <div>
                       <div class="span7">
                         <h4>
-                          <span ng-show="record.stateSelect == 1" >Validated</span>
                           <span class="label label-important" ng-show="record.stateSelect == 0">Draft</span>
+                          <span class="label label-success" ng-show="record.stateSelect == 1" >Validated</span>
                         </h4>
                       </div>
                     </div>
@@ -44,30 +44,32 @@
                 <field name="confirmationDate" readonly="true" />
             </panel>
         </panel>
-        <panel name="orderLinesDetailsPanel" title="Order Lines Details">
-            <panel-related name="orderLinesPanel" title="Order Lines" colSpan="12" field="orderLineList" form-view="orderLine-form" grid-view="orderLine-grid" onChange=""/>
+        <panel name="orderLinesDetailsPanel" title="Order Lines Details" >
+            <panel-related name="orderLinesPanel" title="Order Lines" colSpan="12" field="orderLineList" form-view="orderLine-form" grid-view="orderLine-grid"/>
         </panel>
         <panel name="actionsPanel" sidebar="true" stacked="true">
             <button name="orderValidateBtn" title="Validate"
-                    onClick="action-order-record-validated-onChange,save" icon="fa-exchange"/>
+                    onClick="action-order-group-validate-btn-onclick,save" icon="fa-exchange"/>
             <button name="orderComputeBtn" title="Compute"
-                    onClick="" icon="fa-calculator" readonlyIf="stateSelect == 1"/>
+                    onClick="action-order-group-compute-btn-onclick" icon="fa-calculator" />
         </panel>
         <panel name="inTaxTotalPanel" readonly="true" colSpan="4" sidebar="true">
             <separator/>
             <field name="inTaxTotal" showTitle="false" colSpan="12" css="order-subtotal">
-                <viewer depends="exTaxTotal,stateSelect,taxTotal,total"><![CDATA[
+                <viewer depends="exTaxTotal,stateSelect,taxTotal,total">
+                    <![CDATA[
 
-                 <dl class="dl-horizontal">
-                     <dt>Total W.T.</dt>
-                     <dd>{{$fmt('exTaxTotal')}}</dd>
-                     <dt>Total tax</dt>
-                     <dd>{{$fmt('taxTotal') }}</dd>
-                     <dt class="order-subtotal-total">Total A.T.I.</dt>
-                     <dd class="order-subtotal-total">{{$fmt('total')}}</dd>
-                 </dl>
+                     <dl class="dl-horizontal">
+                         <dt>Total W.T.</dt>
+                         <dd>{{$fmt('exTaxTotal')}}</dd>
+                         <dt>Total tax</dt>
+                         <dd>{{$fmt('taxTotal') }}</dd>
+                         <dt class="order-subtotal-total">Total A.T.I.</dt>
+                         <dd class="order-subtotal-total">{{$fmt('total')}}</dd>
+                     </dl>
 
-              ]]></viewer>
+                  ]]>
+                </viewer>
             </field>
         </panel>
     </form>
@@ -79,8 +81,13 @@
         <action name="action-order-record-default-new"/>
     </action-group>
 
-    <action-group name="action-order-group-onchange">
-        <action name="action-order-record-validated-onChang"/>
+    <action-group name="action-order-group-validate-btn-onclick">
+        <action name="action-order-record-validated-onclick"/>
+    </action-group>
+
+
+    <action-group name="action-order-group-compute-btn-onclick">
+        <action name="action-order-record-compute-onclick"/>
     </action-group>
 
     <!-- ACTION ATTRS -->
@@ -90,9 +97,17 @@
         <field name="orderDate" expr="eval:__date__"/>
     </action-record>
 
-    <action-record name="action-order-record-validated-onChange"
+    <action-record name="action-order-record-compute-onclick"
                    model="com.axelor.apps.sales.db.Order">
-        <field name="confirmationDate" expr="eval:__date__"/>
+        <field name="exTaxTotal"  expr="eval:orderLineList.sum(it -> it.exTaxTotal)"/>
+        <field name="taxTotal"  expr="eval:orderLineList.sum(it -> (it.unitPrice *  it.taxRate / 100.0))"/>
+        <field name="total"  expr="eval:orderLineList.sum(it -> it.total)"/>
+    </action-record>
+
+    <action-record name="action-order-record-validated-onclick"
+                   model="com.axelor.apps.sales.db.Order">
+        <field name="stateSelect"  expr="eval:1"/>
+        <field name="confirmationDate"  expr="eval:__date__"/>
     </action-record>
 
 </object-views>

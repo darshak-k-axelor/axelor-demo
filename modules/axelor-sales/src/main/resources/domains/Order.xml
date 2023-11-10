@@ -24,11 +24,14 @@
             ]]>
         </extra-code>
 
-
-        <track on="ALWAYS">
+        <track>
+            <field name="orderDate"/>
+            <field name="confirmationDate"/>
+            <field name="total"/>
+            <field name="orderLineList"/>
             <field name="stateSelect"/>
             <message if="stateSelect == 0" tag="warning" fields="status">Draft</message>
-            <message if="stateSelect == 1'" tag="success" >Order validated</message>
+            <message if="stateSelect == 1" tag="success" >Order validated</message>
         </track>
     </entity>
 
