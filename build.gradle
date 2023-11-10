@@ -31,4 +31,5 @@ dependencies {
     // add dependencies
     api project(':modules:axelor-contact')
     api project(':modules:axelor-sales')
+    api project(':modules:axelor-invoicing')
 }
