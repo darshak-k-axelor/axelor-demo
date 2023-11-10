@@ -12,20 +12,87 @@
         <field name="confirmationDate" />
         <field name="exTaxTotal" />
         <field name="total" />
-        <field name="stateSelect" />
+        <field name="stateSelect" >
+
+        </field>
     </grid>
 
-    <form name="order-form"
-          title="Orders"
-          model="com.axelor.apps.sales.db.Order">
-        <panel name="productOverviewPanel" title="Product Overview">
-            <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
-            <field name="orderDate" />
-            <field name="confirmationDate" />
-            <field name="exTaxTotal" />
-            <field name="total" />
-            <field name="stateSelect" />
+    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large" onNew="action-group-sale-order-onnew">
+        <panel name="mainPanel" showTitle="false">
+            <panel name="orderStatusPanel" colSpan="12">
+                <field name="orderStatus" showTitle="false" readonly="true" colSpan="3" css="label-bold bold">
+                    <viewer><![CDATA[
+
+                    <div>
+                      <div class="span7">
+                        <h4>
+                          <span ng-show="record.stateSelect == 1" >Validated</span>
+                          <span class="label label-important" ng-show="record.stateSelect == 0">Draft</span>
+                        </h4>
+                      </div>
+                    </div>
+
+              ]]></viewer>
+                </field>
+            </panel>
+            <panel name="customerPanel" title="Customer Details">
+                <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
+                <field name="stateSelect" readonly="true"/>
+            </panel>
+            <panel name="productOverviewPanel" title="Product Overview">
+                <field name="orderDate"/>
+                <field name="confirmationDate" readonly="true" />
+            </panel>
+        </panel>
+        <panel name="orderLinesDetailsPanel" title="Order Lines Details">
+            <panel-related name="orderLinesPanel" title="Order Lines" colSpan="12" field="orderLineList" form-view="orderLine-form" grid-view="orderLine-grid" onChange=""/>
+        </panel>
+        <panel name="actionsPanel" sidebar="true" stacked="true">
+            <button name="orderValidateBtn" title="Validate"
+                    onClick="action-order-record-validated-onChange,save" icon="fa-exchange"/>
+            <button name="orderComputeBtn" title="Compute"
+                    onClick="" icon="fa-calculator" readonlyIf="stateSelect == 1"/>
+        </panel>
+        <panel name="inTaxTotalPanel" readonly="true" colSpan="4" sidebar="true">
+            <separator/>
+            <field name="inTaxTotal" showTitle="false" colSpan="12" css="order-subtotal">
+                <viewer depends="exTaxTotal,stateSelect,taxTotal,total"><![CDATA[
+
+                 <dl class="dl-horizontal">
+                     <dt>Total W.T.</dt>
+                     <dd>{{$fmt('exTaxTotal')}}</dd>
+                     <dt>Total tax</dt>
+                     <dd>{{$fmt('taxTotal') }}</dd>
+                     <dt class="order-subtotal-total">Total A.T.I.</dt>
+                     <dd class="order-subtotal-total">{{$fmt('total')}}</dd>
+                 </dl>
+
+              ]]></viewer>
+            </field>
         </panel>
     </form>
+
+
+    <!-- ACTION GROUPs -->
+
+    <action-group name="action-order-group-order-onnew">
+        <action name="action-order-record-default-new"/>
+    </action-group>
+
+    <action-group name="action-order-group-onchange">
+        <action name="action-order-record-validated-onChang"/>
+    </action-group>
+
+    <!-- ACTION ATTRS -->
+
+    <action-record name="action-order-record-default-new"
+                   model="com.axelor.apps.sales.db.Order">
+        <field name="orderDate" expr="eval:__date__"/>
+    </action-record>
+
+    <action-record name="action-order-record-validated-onChange"
+                   model="com.axelor.apps.sales.db.Order">
+        <field name="confirmationDate" expr="eval:__date__"/>
+    </action-record>
 
 </object-views>
