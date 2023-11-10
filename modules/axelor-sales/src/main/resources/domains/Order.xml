@@ -13,7 +13,7 @@
         <decimal name="exTaxTotal" precision="8" scale="2" />
         <decimal name="total" precision="8" scale="2" />
         <one-to-many name="orderLineList" ref="OrderLine" mappedBy="productOrder"/>
-        <integer name="stateSelect" />
+        <integer name="stateSelect" selection="sale.order.status.select"/>
 
 
         <extra-code>

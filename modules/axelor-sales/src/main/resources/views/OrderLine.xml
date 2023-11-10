@@ -23,10 +23,10 @@
         <panel name="productOverviewPanel" title="Product Overview">
             <field name="product" form-view="product-form" grid-view="product-grid" onChange="action-order-line-group-product-onchange"/>
 
-            <field name="qty" onChange="action-order-line-group-product-onchange" min="1" />
-            <field name="unitPrice" readonly="true"/>
+            <field name="qty" onChange="action-order-line-group-qty-taxrate-onchange" min="1" />
+            <field name="unitPrice" onChange="action-order-line-group-qty-taxrate-onchange" />
             <field name="exTaxTotal" readonly="true"/>
-            <field name="taxRate" onChange="action-order-line-group-product-onchange" min="0"/>
+            <field name="taxRate" onChange="action-order-line-group-qty-taxrate-onchange" min="0"/>
             <field name="total" readonly="true"/>
         </panel>
 
@@ -40,16 +40,24 @@
 
     <action-group name="action-order-line-group-product-onchange">
         <action name="action-order-line-record-product-onchange"/>
+        <action name="action-order-line-record-qty-taxrate-onchange"/>
     </action-group>
+    <action-group name="action-order-line-group-qty-taxrate-onchange">
+        <action name="action-order-line-record-qty-taxrate-onchange"/>
+    </action-group>
+
 
     <!-- ACTION ATTRS -->
 
     <action-record name="action-order-line-record-product-onchange"
                    model="com.axelor.apps.sales.db.OrderLine">
         <field name="unitPrice"  expr="eval: product.unitPrice"/>
+    </action-record>
+
+    <action-record name="action-order-line-record-qty-taxrate-onchange"
+                   model="com.axelor.apps.sales.db.OrderLine">
         <field name="exTaxTotal"  expr="eval: qty * unitPrice"/>
         <field name="total"  expr="eval: (qty * unitPrice * ( 100.0 + taxRate ) / 100.0)"/>
     </action-record>
-
 
 </object-views>

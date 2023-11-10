@@ -5,8 +5,8 @@
 
 
     <selection name="sale.order.status.select">
-        <option value="1">Draft</option>
-        <option value="0">Validated</option>
+        <option value="0" color="red">Draft</option>
+        <option value="1" color="green">Validated</option>
     </selection>
 
 

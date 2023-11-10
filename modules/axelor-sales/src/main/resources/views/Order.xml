@@ -12,32 +12,16 @@
         <field name="confirmationDate" />
         <field name="exTaxTotal" />
         <field name="total" />
-        <field name="stateSelect"  if="">
-
-        </field>
+        <field name="stateSelect" />
     </grid>
 
-    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large" onNew="action-group-sale-order-onnew" readonlyIf="stateSelect == 1">
+    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large"  onLoad="action-order-group-order-onload" onNew="action-order-group-order-onnew" readonlyIf="stateSelect == 1">
         <panel name="mainPanel" showTitle="false">
             <panel name="orderStatusPanel" colSpan="12">
-                <field name="orderStatus" showTitle="false" readonly="true" colSpan="3" css="label-bold bold">
-                    <viewer><![CDATA[
-
-                    <div>
-                      <div class="span7">
-                        <h4>
-                          <span class="label label-important" ng-show="record.stateSelect == 0">Draft</span>
-                          <span class="label label-success" ng-show="record.stateSelect == 1" >Validated</span>
-                        </h4>
-                      </div>
-                    </div>
-
-              ]]></viewer>
-                </field>
+                <field name="stateSelect" widget="NavSelect" showTitle="false" selection="sale.order.status.select" readonly="true"/>
             </panel>
             <panel name="customerPanel" title="Customer Details">
                 <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
-                <field name="stateSelect" readonly="true"/>
             </panel>
             <panel name="productOverviewPanel" title="Product Overview">
                 <field name="orderDate"/>
@@ -72,10 +56,17 @@
                 </viewer>
             </field>
         </panel>
+        <panel-mail name="mailPanel">
+            <mail-messages limit="3"/>
+            <mail-followers/>
+        </panel-mail>
     </form>
 
 
     <!-- ACTION GROUPs -->
+    <action-group name="action-order-group-order-onload">
+        <action name="action-order-record-compute-onclick"/>
+    </action-group>
 
     <action-group name="action-order-group-order-onnew">
         <action name="action-order-record-default-new"/>
@@ -83,6 +74,7 @@
 
     <action-group name="action-order-group-validate-btn-onclick">
         <action name="action-order-record-validated-onclick"/>
+        <action name="action-order-record-compute-onclick"/>
     </action-group>
 
 
