@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <grid name="invoicing-invoiceLines-grid"
+          title="Invoice Lines"
+          model="com.axelor.apps.invoicing.db.InvoiceLine">
+
+        <field name="product" title="Product" grid-view="product-grid" form-view="product-form"/>
+        <field name="description" />
+        <field name="qty" title="Quantity" precision="8" scale="2"/>
+        <field name="unitPrice"  precision="8" scale="2"/>
+        <field name="exTaxTotal" title="Total without tax" precision="8" scale="2"/>
+        <field name="taxRate"  precision="8" scale="2"/>
+        <field name="total"  precision="8" scale="2"/>
+
+    </grid>
+
+    <form name="invoicing-invoiceLines-form"
+          title="Invoice Lines"
+          model="com.axelor.apps.invoicing.db.InvoiceLine"
+          width="large"
+    >
+        <panel name="overviewPanel" title="Invoice Line Overview">
+
+            <panel name="productOverviewPanel" title="Product Overview">
+                <field name="product" form-view="product-form" grid-view="product-grid"/>
+                <field name="qty" min="1" />
+                <field name="unitPrice" />
+                <field name="exTaxTotal" readonly="true"/>
+                <field name="taxRate" min="0"/>
+                <field name="total" readonly="true"/>
+            </panel>
+
+            <panel name="descriptionPanel" title="Description" colSpan="12">
+                <field name="description" showTitle="false" colSpan="12" widget="html"/>
+            </panel>
+
+        </panel>
+    </form>
+
+
+
+</object-views>

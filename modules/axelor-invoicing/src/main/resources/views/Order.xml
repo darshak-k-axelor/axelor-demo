@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+    <form name="order-grid" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
+          id="invoice-order-grid" extension="true">
+
+    </form>
+    <form name="order-form" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
+          id="invoice-order-form" extension="true">
+
+    </form>
+
+</object-views>

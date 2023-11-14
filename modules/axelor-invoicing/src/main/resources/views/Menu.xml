@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <menuitem name="menu-invoicing-root"
+              title="Invoice"  icon="fa-file-text" icon-background="blue" />
+
+    <menuitem name="menu-invoicing-root-invoices"
+              parent="menu-invoicing-root"
+              title="Invoices"
+              action="invoicing.root.invoice.all"  icon="fa-address-card-o" icon-background="blue"/>
+
+    <action-view name="invoicing.root.invoice.all"
+                 title="Invoices"
+                 model="com.axelor.apps.invoicing.db.Invoice">
+        <view type="grid" name="invoicing-grid"/>
+        <view type="form" name="invoicing-form"/>
+    </action-view>
+
+    <menuitem name="menu-invoicing-root-invoice-lines"
+              parent="menu-invoicing-root"
+              title="Invoice Lines"
+              action="invoicing.root.invoice.lines.all"  icon="fa-th-list" icon-background="blue"/>
+
+    <action-view name="invoicing.root.invoice.lines.all"
+                 title="Invoice Lines"
+                 model="com.axelor.apps.invoicing.db.Invoice">
+        <view type="grid" name="invoicing-invoiceLines-grid"/>
+        <view type="form" name="invoicing-invoiceLines-form"/>
+    </action-view>
+
+    <menuitem name="menu-invoicing-root-orders"
+              parent="menu-invoicing-root"
+              title="Orders"
+              action="invoicing.root.orders.all"  icon="fa-first-order" icon-background="blue"/>
+
+    <action-view name="invoicing.root.orders.all"
+                 title="Invoice Lines"
+                 model="com.axelor.apps.invoicing.db.Invoice">
+        <view type="grid" name="invoicing-order-grid"/>
+        <view type="form" name="invoicing-order-form"/>
+    </action-view>
+
+</object-views>
