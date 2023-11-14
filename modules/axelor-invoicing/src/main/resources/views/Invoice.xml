@@ -15,6 +15,7 @@
     <form name="invoicing-form"
           title="Invoice"
           model="com.axelor.apps.invoicing.db.Invoice"
+          width="large"
     >
         <panel name="orderStatusPanel">
             <field name="stateSelect" widget="NavSelect" showTitle="false" selection="sale.order.status.select" readonly="true"/>
@@ -22,16 +23,16 @@
 
         <panel name="invoiceInfoPanel" title="Invoice Information" colSpan="12">
 
-            <field name="customer" colSpan="12" form-view="contact-form" grid-view="contact-grid"/>
+            <field name="customer"  form-view="contact-form" grid-view="contact-grid"/>
             <field name="invoiceDate" title="Date of Invoice"/>
             <field name="exTaxTotal" title="Total without tax" readonly="true"/>
             <field name="total" title="Total" precision="10" scale="2" readonly="true"/>
 
         </panel>
 
-        <panel name="contentPanel" title="Details">
+        <panel name="contentPanel" title="Invoice Lines Overview">
             <panel-related name="invoiceLinesDetailsPanel" title="Invoice Lines" field="invoiceLineList"
-                           grid-view="invoicing-invoiceLines-form" form-view="invoicing-orderLine-form"
+                           grid-view="invoicing-invoiceLines-grid" form-view="invoicing-invoiceLines-form"
                            colSpan="12"/>
 
         </panel>

@@ -6,8 +6,7 @@
 
     <selection name="sale.order.status.select"
                id="invoicing.sale.order.status.select">
-        <option value="25">On the way</option>
-        <option value="30">Delivered</option>
+        <option value="2">On the way</option>
     </selection>
 
 

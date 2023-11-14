@@ -3,13 +3,41 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
-    <form name="order-grid" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
+    <grid name="order-grid" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
           id="invoice-order-grid" extension="true">
+        <extend target="/">
+            <insert position="after">
+                <field name="forecastBillingDate" />
+            </insert>
+        </extend>
+    </grid>
 
-    </form>
     <form name="order-form" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
-          id="invoice-order-form" extension="true">
+          id="invoice-order-form" extension="true" onNew="action-invoicing-method-default-forecast-billing-date">
+        <extend target="//panel[@name='mainPanel']/panel[@name='productOverviewPanel']">
+            <insert position="inside">
+                <field name="forecastBillingDate" title="Forecast Billing Date" readonly="true"/>
+            </insert>
+        </extend>
 
+        <extend target="//panel[@name='mainPanel']">
+            <insert position="inside">
+                <panel name="invoicingDetailsPanel" title="Invoicing Details">
+                    <field name="invoice" title="Invoice" readonly="true"/>
+                </panel>
+            </insert>
+        </extend>
+
+        <extend target="//panel[@name='actionsPanel']">
+            <insert position="inside">
+                <button name="generateInvoiceBtn" title="Generate Invoice"
+                        onClick="" icon="fa-plus" hideIf="stateSelect != 1 || invoice != null"/>
+            </insert>
+        </extend>
     </form>
+
+    <action-method name="action-invoicing-method-default-forecast-billing-date">
+        <call class="com.axelor.apps.invoicing.web.InvoiceController" method="setDefaultInitValue"/>
+    </action-method>
 
 </object-views>

@@ -23,9 +23,8 @@
           width="large"
     >
         <panel name="overviewPanel" title="Invoice Line Overview">
-
             <panel name="productOverviewPanel" title="Product Overview">
-                <field name="product" form-view="product-form" grid-view="product-grid"/>
+                <field name="product" form-view="product-form" grid-view="product-grid" canNew="true"/>
                 <field name="qty" min="1" />
                 <field name="unitPrice" />
                 <field name="exTaxTotal" readonly="true"/>
@@ -36,7 +35,6 @@
             <panel name="descriptionPanel" title="Description" colSpan="12">
                 <field name="description" showTitle="false" colSpan="12" widget="html"/>
             </panel>
-
         </panel>
     </form>
 

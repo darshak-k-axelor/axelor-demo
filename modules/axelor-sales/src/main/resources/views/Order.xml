@@ -15,8 +15,8 @@
         <field name="stateSelect" />
     </grid>
 
-    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large"  onLoad="action-order-group-order-onload" onNew="action-order-group-order-onnew" readonlyIf="stateSelect == 1">
-        <panel name="mainPanel" showTitle="false">
+    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large"  onLoad="action-order-group-order-onload" onNew="action-order-group-order-onnew">
+        <panel name="mainPanel" showTitle="false" readonlyIf="stateSelect >= 2">
             <panel name="orderStatusPanel" colSpan="12">
                 <field name="stateSelect" widget="NavSelect" showTitle="false" selection="sale.order.status.select" readonly="true"/>
             </panel>
@@ -24,18 +24,18 @@
                 <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
             </panel>
             <panel name="productOverviewPanel" title="Product Overview">
-                <field name="orderDate"/>
-                <field name="confirmationDate" readonly="true" />
+                <field name="orderDate" title="Order Date"/>
+                <field name="confirmationDate" title="Confirmation Date" readonly="true" />
             </panel>
         </panel>
-        <panel name="orderLinesDetailsPanel" title="Order Lines Details" >
+        <panel name="orderLinesDetailsPanel" title="Order Lines Details" readonlyIf="stateSelect >= 2">
             <panel-related name="orderLinesPanel" title="Order Lines" colSpan="12" field="orderLineList" form-view="orderLine-form" grid-view="orderLine-grid"/>
         </panel>
         <panel name="actionsPanel" sidebar="true" stacked="true">
             <button name="orderValidateBtn" title="Validate"
-                    onClick="action-order-group-validate-btn-onclick,save" icon="fa-exchange"/>
+                    onClick="action-order-group-validate-btn-onclick,save" icon="fa-exchange" readonlyIf="stateSelect >= 2"/>
             <button name="orderComputeBtn" title="Compute"
-                    onClick="action-order-group-compute-btn-onclick" icon="fa-calculator" />
+                    onClick="action-order-group-compute-btn-onclick" icon="fa-calculator" readonlyIf="stateSelect >= 2" />
         </panel>
         <panel name="inTaxTotalPanel" readonly="true" colSpan="4" sidebar="true">
             <separator/>

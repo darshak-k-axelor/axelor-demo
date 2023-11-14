@@ -30,16 +30,4 @@
         <view type="form" name="invoicing-invoiceLines-form"/>
     </action-view>
 
-    <menuitem name="menu-invoicing-root-orders"
-              parent="menu-invoicing-root"
-              title="Orders"
-              action="invoicing.root.orders.all"  icon="fa-first-order" icon-background="blue"/>
-
-    <action-view name="invoicing.root.orders.all"
-                 title="Invoice Lines"
-                 model="com.axelor.apps.invoicing.db.Invoice">
-        <view type="grid" name="invoicing-order-grid"/>
-        <view type="form" name="invoicing-order-form"/>
-    </action-view>
-
 </object-views>
