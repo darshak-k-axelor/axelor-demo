@@ -6,11 +6,14 @@ import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 
 public class InvoiceLineController {
 
     private final InvoiceLineService invoiceLineService;
+
+    @Inject
     public InvoiceLineController(InvoiceLineService invoiceLineService){
         this.invoiceLineService = invoiceLineService;
     }

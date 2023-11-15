@@ -7,6 +7,7 @@ import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +17,7 @@ public class InvoiceController {
 
     private final InvoiceService invoiceService;
 
+    @Inject
     public InvoiceController(InvoiceService invoiceService){
         this.invoiceService = invoiceService;
     }
