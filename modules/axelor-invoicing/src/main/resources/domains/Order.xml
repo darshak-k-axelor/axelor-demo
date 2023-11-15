@@ -17,7 +17,7 @@
             <field name="billingDate" />
             <field name="stateSelect" />
 
-            <message if="stateSelect == 2" tag="info" fields="status">Invoice Generated</message>
+            <message if="invoice.stateSelect == 1" tag="info" fields="status">Invoice validated</message>
         </track>
     </entity>
 

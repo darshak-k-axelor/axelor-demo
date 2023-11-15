@@ -25,7 +25,6 @@ public class OrderController {
 
         orderService.generateInvoiceForOrder(order);
 
-        response.setValue("stateSelect", "2");
         response.setReload(true);
     }
 }

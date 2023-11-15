@@ -22,6 +22,13 @@
         </string>
         <one-to-one name="orders" ref="com.axelor.apps.sales.db.Order"/>
 
+        <extra-code>
+            <![CDATA[
+              // STATE
+              public static final int STATUS_DRAFT = 0;
+              public static final int STATUS_VALIDATED = 1;
+            ]]>
+        </extra-code>
     </entity>
 
 </domain-models>

@@ -13,7 +13,7 @@
     </grid>
 
     <form name="order-form" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
-          id="invoice-order-form" extension="true" onNew="action-invoicing-method-default-forecast-billing-date">
+          id="invoice-order-form" extension="true">
 
         <extend target="//panel[@name='mainPanel']/panel[@name='productOverviewPanel']">
             <insert position="inside">
@@ -23,7 +23,7 @@
 
         <extend target="//panel[@name='mainPanel']/panel[@name='productOverviewPanel']">
             <insert position="inside">
-                <field name="forecastBillingDate" title="Forecast Billing Date" readonly="true"/>
+                <field name="forecastBillingDate" title="Forecast Billing Date"/>
             </insert>
         </extend>
 
@@ -43,10 +43,6 @@
             </insert>
         </extend>
     </form>
-
-    <action-method name="action-invoicing-method-default-forecast-billing-date">
-        <call class="com.axelor.apps.invoicing.web.InvoiceController" method="setDefaultInitValue"/>
-    </action-method>
 
     <action-method name="action-invoicing-method-add-invoice">
         <call class="com.axelor.apps.invoicing.web.OrderController" method="addInvoice"/>
