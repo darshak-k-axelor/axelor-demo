@@ -24,11 +24,11 @@
     >
         <panel name="overviewPanel" title="Invoice Line Overview">
             <panel name="productOverviewPanel" title="Product Overview">
-                <field name="product" form-view="product-form" grid-view="product-grid" canNew="true" onChange=""/>
-                <field name="qty" min="1" />
+                <field name="product" form-view="product-form" grid-view="product-grid" canNew="true" onChange="action-invoicing-invoiceLine-group-product-onChange"/>
+                <field name="qty" min="1" onChange="action-invoicing-invoiceLine-group-compute" />
                 <field name="unitPrice" />
                 <field name="exTaxTotal" readonly="true"/>
-                <field name="taxRate" min="0"/>
+                <field name="taxRate" min="0" onChange="action-invoicing-invoiceLine-group-compute"/>
                 <field name="total" readonly="true"/>
             </panel>
 
@@ -58,7 +58,7 @@
     </action-method>
 
     <action-method name="action-invoicing-invoiceLine-method-compute-exTaxTotal">
-        <call class="com.axelor.apps.invoicing.web.InvoiceLineController" method="computeInvoiceLineExTotal"/>
+        <call class="com.axelor.apps.invoicing.web.InvoiceLineController" method="computeInvoiceLineExTaxTotal"/>
     </action-method>
 
     <action-method name="action-invoicing-invoiceLine-method-compute-total">

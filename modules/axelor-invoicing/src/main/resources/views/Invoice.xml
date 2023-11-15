@@ -9,6 +9,9 @@
 
         <field name="customer" grid-view="contact-grid" form-view="contact-form"/>
         <field name="invoiceDate" />
+        <field name="exTaxTotal" />
+        <field name="total" />
+        <field name="stateSelect" />
 
     </grid>
 

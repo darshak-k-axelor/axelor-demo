@@ -39,7 +39,7 @@
         <extend target="//panel[@name='actionsPanel']">
             <insert position="inside">
                 <button name="generateInvoiceBtn" title="Generate Invoice"
-                        onClick="action-invoicing-method-add-invoice,save" icon="fa-plus" hideIf="stateSelect != 1"/>
+                        onClick="action-invoicing-method-add-invoice,save" icon="fa-plus" hideIf="stateSelect != 1 || invoice != null"/>
             </insert>
         </extend>
     </form>
