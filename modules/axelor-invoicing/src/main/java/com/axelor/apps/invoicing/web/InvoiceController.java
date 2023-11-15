@@ -14,7 +14,7 @@ import java.util.List;
 
 public class InvoiceController {
 
-    private  InvoiceService invoiceService;
+    private final InvoiceService invoiceService;
 
     public InvoiceController(InvoiceService invoiceService){
         this.invoiceService = invoiceService;
@@ -30,6 +30,17 @@ public class InvoiceController {
         Invoice invoice = ctx.asType(Invoice.class);
         BigDecimal exTaxTotalResult = invoiceService.computeExTaxTotalInvoiceValue(invoice);
         response.setValue("exTaxTotal", exTaxTotalResult);
+    }
+
+    public void computeInvoiceTotal(ActionRequest request, ActionResponse response){
+
+        Context ctx = request.getContext();
+        Invoice invoice = ctx.asType(Invoice.class);
+        BigDecimal exTaxTotalResult = invoiceService.computeInvoiceTotal(invoice);
+        response.setValue("total", exTaxTotalResult);
+    }
+    public void setStateSelectToValidate(ActionRequest request, ActionResponse response){
+        response.setValue("stateSelect", 1);
     }
 
 }

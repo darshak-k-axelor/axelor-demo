@@ -45,18 +45,37 @@
         <panel name="actionsPanel" sidebar="true" stacked="true">
             <button name="orderValidateBtn" title="Validate"
                     showIf="stateSelect == 0"
-                    onClick="" icon="fa-exchange"/>
+                    onClick="action-invoicing-invoice-group-validate-btn" icon="fa-exchange"/>
             <button name="orderComputeBtn" title="Compute"
-                    onClick="action-invoicing-invoice-method-compute-ExTaxTotal" icon="fa-calculator" readonlyIf="stateSelect >= 1" />
+                    onClick="action-invoicing-invoice-group-compute-btn" icon="fa-calculator" readonlyIf="stateSelect >= 1" />
         </panel>
     </form>
+
+    <action-group name="action-invoicing-invoice-group-compute-btn">
+        <action name="action-invoicing-invoice-method-compute-exTaxTotal"/>
+        <action name="action-invoicing-invoice-method-compute-total"/>
+    </action-group>
+
+    <action-group name="action-invoicing-invoice-group-validate-btn">
+        <action name="action-invoicing-invoice-group-compute-btn"/>
+        <action name="action-invoicing-invoice-method-click-validate"/>
+        <action name="save"/>
+    </action-group>
 
     <action-method name="action-invoicing-invoice-method-init-invoiceDate">
         <call class="com.axelor.apps.invoicing.web.InvoiceController" method="setDefaultInitValue"/>
     </action-method>
 
-    <action-method name="action-invoicing-invoice-method-compute-ExTaxTotal">
+    <action-method name="action-invoicing-invoice-method-compute-exTaxTotal">
         <call class="com.axelor.apps.invoicing.web.InvoiceController" method="computeExTaxTotalInvoiceValue"/>
+    </action-method>
+
+    <action-method name="action-invoicing-invoice-method-compute-total">
+        <call class="com.axelor.apps.invoicing.web.InvoiceController" method="computeInvoiceTotal"/>
+    </action-method>
+
+    <action-method name="action-invoicing-invoice-method-click-validate">
+        <call class="com.axelor.apps.invoicing.web.InvoiceController" method="setStateSelectToValidate"/>
     </action-method>
 
 </object-views>

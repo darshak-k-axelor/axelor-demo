@@ -9,13 +9,15 @@ import java.util.List;
 public class InvoiceServiceImpl implements  InvoiceService {
     @Override
     public BigDecimal computeExTaxTotalInvoiceValue(Invoice invoice) {
-        List<InvoiceLine> invoiceLineList = invoice.getInvoiceLineList();
-        BigDecimal exTaxTotalResult = new BigDecimal(0);
+        return invoice.getInvoiceLineList().stream()
+                .map(InvoiceLine::getExTaxTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
-        for(InvoiceLine currentInvoiceLine : invoiceLineList){
-            exTaxTotalResult = exTaxTotalResult.add(currentInvoiceLine.getExTaxTotal());
-        }
-
-        return exTaxTotalResult;
+    @Override
+    public BigDecimal computeInvoiceTotal(Invoice invoice) {
+        return invoice.getInvoiceLineList().stream()
+                .map(InvoiceLine::getTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
