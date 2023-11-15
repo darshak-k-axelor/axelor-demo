@@ -15,7 +15,7 @@
         <field name="stateSelect" />
     </grid>
 
-    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large"  onLoad="action-order-group-order-onload" onNew="action-order-group-order-onnew">
+    <form name="order-form" title="Orders" model="com.axelor.apps.sales.db.Order" width="large" onNew="action-order-group-order-onnew">
         <panel name="mainPanel" showTitle="false" readonlyIf="stateSelect >= 2">
             <panel name="orderStatusPanel" colSpan="12">
                 <field name="stateSelect" widget="NavSelect" showTitle="false" selection="sale.order.status.select" readonly="true"/>
@@ -65,10 +65,6 @@
 
 
     <!-- ACTION GROUPs -->
-    <action-group name="action-order-group-order-onload">
-        <action name="action-order-record-compute-onclick"/>
-    </action-group>
-
     <action-group name="action-order-group-order-onnew">
         <action name="action-order-record-default-new"/>
     </action-group>
