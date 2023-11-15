@@ -15,6 +15,11 @@
         <decimal name="exTaxTotal" title="Total without tax" precision="8" scale="2"/>
         <decimal name="total" title="Total" precision="8" scale="2"/>
 
+        <string name="invoiceIdNameColumn" namecolumn="true">
+            <![CDATA[
+                return "Invoice #"+id;
+            ]]>
+        </string>
         <one-to-one name="orders" ref="com.axelor.apps.sales.db.Order"/>
 
     </entity>

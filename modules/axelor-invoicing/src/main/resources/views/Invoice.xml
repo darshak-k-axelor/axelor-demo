@@ -17,14 +17,11 @@
           model="com.axelor.apps.invoicing.db.Invoice"
           width="large"
     >
-        <panel name="orderStatusPanel">
-            <field name="stateSelect" widget="NavSelect" showTitle="false" selection="sale.order.status.select" readonly="true"/>
-        </panel>
 
         <panel name="invoiceInfoPanel" title="Invoice Information" colSpan="12">
 
             <field name="customer"  form-view="contact-form" grid-view="contact-grid"/>
-            <field name="invoiceDate" title="Date of Invoice"/>
+            <field name="invoiceDate" title="Date of Invoice" readonly="true"/>
             <field name="exTaxTotal" title="Total without tax" readonly="true"/>
             <field name="total" title="Total" precision="10" scale="2" readonly="true"/>
 

@@ -11,6 +11,14 @@
         <integer name="stateSelect" title="State" selection="sale.order.status.select"/>
 
         <date name="forecastBillingDate" title="Forecast Billing Date"/>
+
+        <track>
+            <field name="invoice"/>
+            <field name="billingDate" />
+            <field name="stateSelect" />
+
+            <message if="stateSelect == 2" tag="info" fields="status">Invoice Generated</message>
+        </track>
     </entity>
 
 </domain-models>

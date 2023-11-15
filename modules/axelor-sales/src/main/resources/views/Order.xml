@@ -33,9 +33,10 @@
         </panel>
         <panel name="actionsPanel" sidebar="true" stacked="true">
             <button name="orderValidateBtn" title="Validate"
-                    onClick="action-order-group-validate-btn-onclick,save" icon="fa-exchange" readonlyIf="stateSelect >= 2"/>
+                    showIf="stateSelect == 0"
+                    onClick="action-order-group-validate-btn-onclick,save" icon="fa-exchange"/>
             <button name="orderComputeBtn" title="Compute"
-                    onClick="action-order-group-compute-btn-onclick" icon="fa-calculator" readonlyIf="stateSelect >= 2" />
+                    onClick="action-order-group-compute-btn-onclick" icon="fa-calculator" readonlyIf="stateSelect >= 1" />
         </panel>
         <panel name="inTaxTotalPanel" readonly="true" colSpan="4" sidebar="true">
             <separator/>

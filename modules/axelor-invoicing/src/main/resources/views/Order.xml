@@ -14,16 +14,24 @@
 
     <form name="order-form" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
           id="invoice-order-form" extension="true" onNew="action-invoicing-method-default-forecast-billing-date">
+
+        <extend target="//panel[@name='mainPanel']/panel[@name='productOverviewPanel']">
+            <insert position="inside">
+                <field name="billingDate" title="Billing Date" readonly="true"/>
+            </insert>
+        </extend>
+
         <extend target="//panel[@name='mainPanel']/panel[@name='productOverviewPanel']">
             <insert position="inside">
                 <field name="forecastBillingDate" title="Forecast Billing Date" readonly="true"/>
             </insert>
         </extend>
 
+
         <extend target="//panel[@name='mainPanel']">
             <insert position="inside">
                 <panel name="invoicingDetailsPanel" title="Invoicing Details">
-                    <field name="invoice" title="Invoice" readonly="true"/>
+                    <field name="invoice" title="Invoice" readonly="true" form-view="invoicing-form" grid-view="invoicing-grid"/>
                 </panel>
             </insert>
         </extend>
@@ -31,13 +39,17 @@
         <extend target="//panel[@name='actionsPanel']">
             <insert position="inside">
                 <button name="generateInvoiceBtn" title="Generate Invoice"
-                        onClick="" icon="fa-plus" hideIf="stateSelect != 1 || invoice != null"/>
+                        onClick="action-invoicing-method-add-invoice,save" icon="fa-plus" hideIf="stateSelect != 1"/>
             </insert>
         </extend>
     </form>
 
     <action-method name="action-invoicing-method-default-forecast-billing-date">
         <call class="com.axelor.apps.invoicing.web.InvoiceController" method="setDefaultInitValue"/>
+    </action-method>
+
+    <action-method name="action-invoicing-method-add-invoice">
+        <call class="com.axelor.apps.invoicing.web.OrderController" method="addInvoice"/>
     </action-method>
 
 </object-views>
