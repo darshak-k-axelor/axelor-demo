@@ -24,7 +24,7 @@
     >
         <panel name="overviewPanel" title="Invoice Line Overview">
             <panel name="productOverviewPanel" title="Product Overview">
-                <field name="product" form-view="product-form" grid-view="product-grid" canNew="true"/>
+                <field name="product" form-view="product-form" grid-view="product-grid" canNew="true" onChange=""/>
                 <field name="qty" min="1" />
                 <field name="unitPrice" />
                 <field name="exTaxTotal" readonly="true"/>
@@ -38,6 +38,31 @@
         </panel>
     </form>
 
+    <action-group name="action-invoicing-invoiceLine-group-product-onChange">
+        <action name="action-invoicing-invoiceLine-method-load-unitPrice"/>
+        <action name="action-invoicing-invoiceLine-method-load-description"/>
+    </action-group>
 
+    <action-group name="action-invoicing-invoiceLine-group-compute">
+        <action name="action-invoicing-invoiceLine-method-compute-exTaxTotal"/>
+        <action name="action-invoicing-invoiceLine-method-compute-total"/>
+    </action-group>
+
+
+    <action-method name="action-invoicing-invoiceLine-method-load-unitPrice">
+        <call class="com.axelor.apps.invoicing.web.InvoiceLineController" method="loadInvoiceLineUnitPrice"/>
+    </action-method>
+
+    <action-method name="action-invoicing-invoiceLine-method-load-description">
+        <call class="com.axelor.apps.invoicing.web.InvoiceLineController" method="loadInvoiceLineDescription"/>
+    </action-method>
+
+    <action-method name="action-invoicing-invoiceLine-method-compute-exTaxTotal">
+        <call class="com.axelor.apps.invoicing.web.InvoiceLineController" method="computeInvoiceLineExTotal"/>
+    </action-method>
+
+    <action-method name="action-invoicing-invoiceLine-method-compute-total">
+        <call class="com.axelor.apps.invoicing.web.InvoiceLineController" method="computeInvoiceLineTotal"/>
+    </action-method>
 
 </object-views>
