@@ -4,4 +4,5 @@ import com.axelor.apps.sales.db.Order;
 
 public interface OrderService{
     public void generateInvoiceForOrder(Order order);
+    public void generateLateOrderInvoicesForOrder();
 }

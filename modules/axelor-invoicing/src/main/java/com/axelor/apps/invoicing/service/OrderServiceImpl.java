@@ -79,4 +79,11 @@ public class OrderServiceImpl implements OrderService{
         }
         return resultInvoiceLineList;
     }
+
+
+
+    @Override
+    public void generateLateOrderInvoicesForOrder() {
+
+    }
 }

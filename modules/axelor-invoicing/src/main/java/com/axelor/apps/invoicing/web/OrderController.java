@@ -27,4 +27,9 @@ public class OrderController {
 
         response.setReload(true);
     }
+
+    public void generateLateOrderInvoice(ActionRequest request, ActionResponse response){
+        orderService.generateLateOrderInvoicesForOrder();
+    }
+
 }

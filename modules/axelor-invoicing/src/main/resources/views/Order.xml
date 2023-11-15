@@ -10,6 +10,17 @@
                 <field name="forecastBillingDate" />
             </insert>
         </extend>
+
+        <extend target="//field[@name='customer']">
+            <insert position="before">
+                <menubar>
+                    <menu name="ordersToolsMenu" title="Order Tools" icon="fa-wrench" showTitle="true">
+                        <item name="lateOrdersItem" title="Generate Invoice For Late Orders"
+                              action="action-invoicing-order-method-generateLateOrderInvoice"/>
+                    </menu>
+                </menubar>
+            </insert>
+        </extend>
     </grid>
 
     <form name="order-form" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
@@ -46,6 +57,10 @@
 
     <action-method name="action-invoicing-method-add-invoice">
         <call class="com.axelor.apps.invoicing.web.OrderController" method="addInvoice"/>
+    </action-method>
+
+    <action-method name="action-invoicing-order-method-generateLateOrderInvoice">
+        <call class="com.axelor.apps.invoicing.web.OrderController" method="generateLateOrderInvoice"/>
     </action-method>
 
 </object-views>
