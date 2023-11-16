@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="accounting" package="com.axelor.apps.accounting.db"/>
+
+    <entity name="AccountingEntryLine">
+        <decimal name="debit" title="Debit" precision="8" scale="2"/>
+        <decimal name="credit" title="Credit" precision="8" scale="2"/>
+
+        <many-to-one name="accountingEntry"  ref="com.axelor.apps.accounting.db.AccountingEntry"/>
+        <many-to-one name="account" ref="com.axelor.apps.accounting.db.Account" title="Account"/>
+
+        <string name="accountingEntryLineNameColumn" namecolumn="true">
+            <![CDATA[
+                return "Acc. Entry Line #"+id;
+            ]]>
+        </string>
+
+    </entity>
+
+</domain-models>
