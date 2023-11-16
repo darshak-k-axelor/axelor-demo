@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <menuitem name="menu-accounting-root"
+              title="Accounting" icon="fa-calculator" icon-background="#e0a83c"/>
+
+    <menuitem name="menu-accounting-root-account"
+              parent="menu-accounting-root"
+              title="Accounts"
+              action="accounting.root.account.all"  icon="fa-user-secret" icon-background="#e0a83c"/>
+
+    <action-view name="accounting.root.account.all" title="Accounts">
+        <view type="grid" name="accounting-account-grid"/>
+        <view type="form" name="accounting-account-form"/>
+    </action-view>
+
+</object-views>
