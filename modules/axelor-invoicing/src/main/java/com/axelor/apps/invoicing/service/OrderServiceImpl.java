@@ -96,16 +96,14 @@ public class OrderServiceImpl implements OrderService{
                         .filter("self.invoice = null AND self.forecastBillingDate < :currentDate")
                         .bind("currentDate", LocalDate.now());
 
-        List<Order> lateOrderList = query.fetch(FETCH_LIMIT, 0);
-        int offSet = FETCH_LIMIT;
+        List<Order> lateOrderList = query.fetch(FETCH_LIMIT);
 
         while (!lateOrderList.isEmpty()) {
             totalInvoiceGenerated = totalInvoiceGenerated + lateOrderList.size();
             generateLateOrderInvoicesForOrder(lateOrderList);
 
             JPA.clear();
-            lateOrderList = query.fetch(FETCH_LIMIT, offSet);
-            offSet = offSet + FETCH_LIMIT;
+            lateOrderList = query.fetch(FETCH_LIMIT);
         }
 
         return totalInvoiceGenerated;
