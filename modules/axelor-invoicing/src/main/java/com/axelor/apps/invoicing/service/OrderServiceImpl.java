@@ -61,6 +61,7 @@ public class OrderServiceImpl implements OrderService{
 
 
         orderRepository.save(currentOrder);
+        invoiceRepository.save(currentInvoice);
     }
 
     private List<InvoiceLine> convertOrderLineListToInvoiceLineList(List<OrderLine> orderLineList, Invoice invoice) {

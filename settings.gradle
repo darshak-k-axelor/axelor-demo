@@ -46,4 +46,6 @@ rootProject.name = 'axelor-demo'
 include "modules:axelor-contact"
 include 'modules:axelor-sales'
 include 'modules:axelor-invoicing'
+include 'modules:axelor-accounting'
+findProject(':modules:axelor-accounting')?.name = 'axelor-accounting'
 
