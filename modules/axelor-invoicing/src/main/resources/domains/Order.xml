@@ -12,6 +12,13 @@
 
         <date name="forecastBillingDate" title="Forecast Billing Date"/>
 
+        <extra-code>
+            <![CDATA[
+              // STATE
+              public static final int STATUS_INVOICE_GENERATED = 2;
+            ]]>
+        </extra-code>
+
         <track>
             <field name="invoice"/>
             <field name="billingDate" />
@@ -19,6 +26,7 @@
 
             <message if="invoice.stateSelect == 1" tag="info" fields="status">Invoice validated</message>
         </track>
+
     </entity>
 
 </domain-models>

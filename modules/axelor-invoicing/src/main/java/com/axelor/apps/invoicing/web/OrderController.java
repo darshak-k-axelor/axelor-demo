@@ -29,7 +29,9 @@ public class OrderController {
     }
 
     public void generateLateOrderInvoice(ActionRequest request, ActionResponse response){
-        orderService.generateLateOrderInvoicesForOrder();
+        int totalInvoiceGenerated = orderService.generateLateOrderInvoicesForOrder();
+
+        response.setInfo(totalInvoiceGenerated+" invoices are generated!", "Late Order Invoice Info");
     }
 
 }

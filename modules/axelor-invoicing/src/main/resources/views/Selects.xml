@@ -4,9 +4,8 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
 
 
-    <selection name="sale.order.status.select">
-        <option value="0" color="red" order="0">Draft</option>
-        <option value="1" color="green" order="1">Validated</option>
+    <selection id = "invoice.sale.order.status.select" name="sale.order.status.select">
+        <option value="2" color="red" order="3">Invoice Generated</option>
     </selection>
 
 

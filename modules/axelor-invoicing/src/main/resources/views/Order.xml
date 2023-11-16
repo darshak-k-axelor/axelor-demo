@@ -15,7 +15,7 @@
             <insert position="before">
                 <menubar>
                     <menu name="ordersToolsMenu" title="Order Tools" icon="fa-wrench" showTitle="true">
-                        <item name="lateOrdersItem" title="Generate Invoice For Late Orders"
+                        <item name="lateOrdersItem" title="Invoice Late Orders"
                               action="action-invoicing-order-method-generateLateOrderInvoice"/>
                     </menu>
                 </menubar>

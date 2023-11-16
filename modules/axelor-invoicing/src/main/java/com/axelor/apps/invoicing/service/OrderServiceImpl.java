@@ -6,6 +6,8 @@ import com.axelor.apps.invoicing.db.repo.InvoiceRepository;
 import com.axelor.apps.sales.db.Order;
 import com.axelor.apps.sales.db.OrderLine;
 import com.axelor.apps.sales.db.repo.OrderRepository;
+import com.axelor.db.JPA;
+import com.axelor.db.Query;
 import com.google.inject.persist.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import java.util.List;
 
 public class OrderServiceImpl implements OrderService{
     private static final Logger LOG = LoggerFactory.getLogger(OrderServiceImpl.class);
+    public static final int FETCH_LIMIT = 20;
     protected OrderRepository orderRepository;
     protected InvoiceRepository invoiceRepository;
 
@@ -49,11 +52,12 @@ public class OrderServiceImpl implements OrderService{
         currentInvoice.setStateSelect(currentOrder.getStateSelect());
         currentInvoice.setExTaxTotal(currentOrder.getExTaxTotal());
         currentInvoice.setTotal(currentOrder.getTotal());
-        currentInvoice.setStateSelect(OrderRepository.STATUS_VALIDATED);
+        currentInvoice.setStateSelect(OrderRepository.STATUS_INVOICE_GENERATED);
 
 
         currentOrder.setBillingDate(LocalDate.now());
         currentOrder.setInvoice(currentInvoice);
+        currentOrder.setStateSelect(OrderRepository.STATUS_INVOICE_GENERATED);
 
 
         orderRepository.save(currentOrder);
@@ -83,7 +87,34 @@ public class OrderServiceImpl implements OrderService{
 
 
     @Override
-    public void generateLateOrderInvoicesForOrder() {
+    @Transactional(rollbackOn = {Exception.class})
+    public int generateLateOrderInvoicesForOrder() {
+        int totalInvoiceGenerated = 0;
+        Query<Order> query =
+                orderRepository
+                        .all()
+                        .filter("self.invoice = null AND self.forecastBillingDate < :currentDate")
+                        .bind("currentDate", LocalDate.now());
 
+        List<Order> lateOrderList = query.fetch(FETCH_LIMIT, 0);
+        int offSet = FETCH_LIMIT;
+
+        while (!lateOrderList.isEmpty()) {
+            totalInvoiceGenerated = totalInvoiceGenerated + lateOrderList.size();
+            generateLateOrderInvoicesForOrder(lateOrderList);
+
+            JPA.clear();
+            lateOrderList = query.fetch(FETCH_LIMIT, offSet);
+            offSet = offSet + FETCH_LIMIT;
+        }
+
+        return totalInvoiceGenerated;
+
+    }
+
+    private void generateLateOrderInvoicesForOrder(List<Order> lateOrderList){
+        for (Order lateOrder : lateOrderList) {
+            generateInvoiceForOrder(lateOrder);
+        }
     }
 }
