@@ -11,7 +11,7 @@
               title="Accounts"
               action="accounting.root.account.all"  icon="fa-user-secret" icon-background="#e0a83c"/>
 
-    <action-view name="accounting.root.account.all" title="Accounts">
+    <action-view name="accounting.root.account.all" title="Accounts" model="com.axelor.apps.accounting.db.Account">
         <view type="grid" name="accounting-account-grid"/>
         <view type="form" name="accounting-account-form"/>
     </action-view>

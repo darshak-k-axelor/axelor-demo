@@ -13,8 +13,7 @@
 
     <form name="accounting-account-form"
           title="Account Info"
-          model="com.axelor.apps.accounting.db.Account"
-          canEdit="false">
+          model="com.axelor.apps.accounting.db.Account">
 
         <panel name="accountPanel" title="Account Details" >
             <field name="name" title="Name"  />
