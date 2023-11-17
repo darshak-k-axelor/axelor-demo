@@ -11,9 +11,35 @@
               title="Accounts"
               action="accounting.root.account.all"  icon="fa-user-secret" icon-background="#e0a83c"/>
 
-    <action-view name="accounting.root.account.all" title="Accounts" model="com.axelor.apps.accounting.db.Account">
+    <action-view name="accounting.root.account.all"
+                 title="Accounts"
+                 model="com.axelor.apps.accounting.db.Account">
         <view type="grid" name="accounting-account-grid"/>
         <view type="form" name="accounting-account-form"/>
+    </action-view>
+
+    <menuitem name="menu-accounting-root-accountEntry"
+              parent="menu-accounting-root"
+              title="Accounting Entries"
+              action="accounting.root.accountingEntry.all"  icon="fa-user-secret" icon-background="#e0a83c"/>
+
+    <action-view name="accounting.root.accountingEntry.all"
+                 title="Accounting Entries"
+                 model="com.axelor.apps.accounting.db.AccountingEntry">
+        <view type="grid" name="accounting-accountingEntry-grid"/>
+        <view type="form" name="accounting-accountingEntry-form"/>
+    </action-view>
+
+    <menuitem name="menu-accounting-root-accountEntry"
+              parent="menu-accounting-root"
+              title="Accounting Entry Lines"
+              action="accounting.root.accountingEntryLine.all"  icon="fa-user-secret" icon-background="#e0a83c"/>
+
+    <action-view name="accounting.root.accountingEntryLine.all"
+                 title="Accounting Entry Lines"
+                 model="com.axelor.apps.accounting.db.AccountingEntryLine">
+        <view type="grid" name="accounting-accountingEntry-grid"/>
+        <view type="form" name="accounting-accountingEntry-form"/>
     </action-view>
 
 </object-views>
