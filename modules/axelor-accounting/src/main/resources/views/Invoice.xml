@@ -3,18 +3,10 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
-        <grid name="invoicing-grid" title="Accounting Invoices" model="com.axelor.apps.sales.db.Order"
-              id="accounting-invoicing-grid" extension="true">
-            <extend target="/">
-                <insert position="after">
-                    <hilite background="red" if="$moment(todayDate).diff(forecastBillingDate) &gt; 0"/>
-                </insert>
-            </extend>
-        </grid>
 
-    <form name="invoicing-form" title="Accounting Invoices" model="com.axelor.apps.sales.db.Order"
+
+    <form name="invoicing-form" title="Accounting Invoices" model="com.axelor.apps.invoicing.db.Invoice"
           id="accounting-invoicing-form" extension="true">
-
         <extend target="//panel[@name='actionsPanel']/button[@name='orderValidateBtn']">
             <attribute name="onClick" value="action-accounting-group-validate-invoice"/>
         </extend>
@@ -25,7 +17,6 @@
                         onClick="action-accounting-invoice-method-generate-accounting-entry" icon="fa-plus" />
             </insert>
         </extend>
-
     </form>
 
     <action-group name="action-accounting-group-validate-invoice">
