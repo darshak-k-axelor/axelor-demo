@@ -4,7 +4,7 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
 
     <grid name="accounting-accountingEntry-grid" title="Account Info"
-          model="com.axelor.apps.accounting.db.AccountEntry">
+          model="com.axelor.apps.accounting.db.AccountingEntry">
         <field name="invoiceDate" title="Name"/>
         <field name="accountingEntryLineList" title="Accounting Entry Line List" grid-view="accounting-accountingEntryLine-grid" form-view="accounting-accountingEntryLine-form"/>
     </grid>
@@ -12,15 +12,15 @@
 
     <form name="accounting-accountingEntry-form"
           title="Account Info"
-          model="com.axelor.apps.accounting.db.AccountEntry">
+          model="com.axelor.apps.accounting.db.AccountingEntry">
 
         <panel name="accountEntryPanel" title="Accounting Entry Details" >
             <field name="accountingEntryLineNameColumn" title="Accounting Entry Line #"/>
-            <field name="invoiceDate" title="Name"/>
+            <field name="invoiceDate" title="Invoice Date"/>
         </panel>
 
         <panel name="accountEntryLinePanel" title="Accounting Entry Line Details" >
-            <field name="accountingEntryLineList" title="Accounting Entry Line List" grid-view="accounting-accountingEntryLine-grid" form-view="accounting-accountingEntryLine-form"/>
+            <field name="accountingEntryLineList" title="Accounting Entry Line List" colSpan="12" grid-view="accounting-accountingEntryLine-grid" form-view="accounting-accountingEntryLine-form"/>
         </panel>
     </form>
 

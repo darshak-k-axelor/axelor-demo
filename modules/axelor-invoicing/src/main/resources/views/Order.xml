@@ -40,8 +40,8 @@
 
 
         <extend target="//panel[@name='mainPanel']">
-            <insert position="inside">
-                <panel name="invoicingDetailsPanel" title="Invoicing Details">
+            <insert position="after">
+                <panel name="generalDetailsPanel" title="General Details">
                     <field name="invoice" title="Invoice" readonly="true" form-view="invoicing-form" grid-view="invoicing-grid"/>
                 </panel>
             </insert>

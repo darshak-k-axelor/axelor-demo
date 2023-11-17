@@ -9,4 +9,5 @@ axelor {
 
 dependencies {
     api project(":modules:axelor-invoicing")
+    implementation project(path: ':modules:axelor-invoicing')
 }

@@ -23,7 +23,7 @@
           width="large"
     >
         <panel name="overviewPanel" title="Invoice Line Overview">
-            <panel name="productOverviewPanel" title="Product Overview">
+            <panel name="productOverviewPanel" title="Product Overview" colSpan="12">
                 <field name="product" form-view="product-form" grid-view="product-grid" canNew="true" onChange="action-invoicing-invoiceLine-group-product-onChange"/>
                 <field name="qty" min="1" onChange="action-invoicing-invoiceLine-group-compute" />
                 <field name="unitPrice" />
