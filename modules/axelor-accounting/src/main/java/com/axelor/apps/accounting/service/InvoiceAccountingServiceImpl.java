@@ -29,9 +29,9 @@ public class InvoiceAccountingServiceImpl extends InvoiceServiceImpl implements 
 
     @Override
     @Transactional(rollbackOn = {Exception.class})
-    public void generateAccountingEntryForInvoice(Invoice invoice) {
+    public void generateAccountingEntryForInvoice(Invoice currentInvoice) {
         try {
-            Invoice currentInvoice = invoiceRepository.find(invoice.getId());
+            currentInvoice = invoiceRepository.find(currentInvoice.getId());
             AccountingEntry accountingEntry = new AccountingEntry();
             accountingEntry.setInvoiceDate(currentInvoice.getInvoiceDate());
 

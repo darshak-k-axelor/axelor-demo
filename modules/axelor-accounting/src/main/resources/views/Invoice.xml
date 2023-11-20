@@ -14,7 +14,7 @@
         <extend target="//panel[@name='actionsPanel']">
             <insert position="inside">
                 <button name="generateAccountingEntryBtn" title="Generate Accounting Entry"
-                        onClick="action-accounting-invoice-method-generate-accounting-entry" icon="fa-plus" showIf="stateSelect >= 1"/>
+                        onClick="action-accounting-invoice-method-generate-accounting-entry" icon="fa-plus" showIf="stateSelect >= 1" readonlyIf="stateSelect >= 2"/>
             </insert>
         </extend>
     </form>

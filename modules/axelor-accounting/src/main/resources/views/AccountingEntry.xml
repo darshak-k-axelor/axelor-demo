@@ -5,14 +5,16 @@
 
     <grid name="accounting-accountingEntry-grid" title="Account Info"
           model="com.axelor.apps.accounting.db.AccountingEntry">
-        <field name="invoiceDate" title="Name"/>
-        <field name="accountingEntryLineList" title="Accounting Entry Line List" grid-view="accounting-accountingEntryLine-grid" form-view="accounting-accountingEntryLine-form"/>
+        <field name="accountingEntryLineNameColumn" title="Title"/>
+        <field name="invoiceDate" title="Invoice Date"/>
     </grid>
 
 
     <form name="accounting-accountingEntry-form"
           title="Account Info"
-          model="com.axelor.apps.accounting.db.AccountingEntry">
+          model="com.axelor.apps.accounting.db.AccountingEntry"
+          width="large"
+    >
 
         <panel name="accountEntryPanel" title="Accounting Entry Details" >
             <field name="accountingEntryLineNameColumn" title="Accounting Entry Line #"/>
