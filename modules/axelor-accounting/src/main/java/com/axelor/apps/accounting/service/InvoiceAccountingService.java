@@ -6,4 +6,6 @@ public interface InvoiceAccountingService {
     public void generateAccountingEntryForInvoice(Invoice invoice);
 
     public boolean validateInvoiceLines(Invoice invoice);
+
+    public int getValidateStatus();
 }
