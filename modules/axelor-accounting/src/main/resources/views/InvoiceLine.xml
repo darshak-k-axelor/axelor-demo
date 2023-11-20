@@ -24,7 +24,7 @@
           extension="true"
     >
         <extend target="//panel[@name='overviewPanel']/panel[@name='productOverviewPanel']/field[@name='product']">
-            <attribute name="onChange" value="action-accounting-method-invoiceLine-onchange"/>
+            <attribute name="onChange" value="action-accounting-invoicing-invoiceLine-group-product-onChange"/>
         </extend>
 
         <extend target="//panel[@name='overviewPanel']/panel[@name='productOverviewPanel']/field[@name='total']">
@@ -34,6 +34,11 @@
         </extend>
 
     </form>
+
+    <action-group name="action-accounting-invoicing-invoiceLine-group-product-onChange">
+        <action name="action-accounting-method-invoiceLine-onchange"/>
+        <action name="action-invoicing-invoiceLine-group-product-onChange"/>
+    </action-group>
 
 
     <action-method name="action-accounting-method-invoiceLine-onchange">

@@ -11,7 +11,7 @@
 
 
     <form name="accounting-accountingEntry-form"
-          title="Account Info"
+          title="Account Entries"
           model="com.axelor.apps.accounting.db.AccountingEntry"
           width="large"
     >
