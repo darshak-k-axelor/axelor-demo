@@ -27,7 +27,7 @@
             <attribute name="onChange" value="action-accounting-method-invoiceLine-onchange"/>
         </extend>
 
-        <extend target="//panel[@name='overviewPanel']/field[@name='total']">
+        <extend target="//panel[@name='overviewPanel']/panel[@name='productOverviewPanel']/field[@name='total']">
             <insert position="after">
                 <field name="invoiceLineAccount" title="Account" form-view="accounting-account-form" grid-view="accounting-account-grid" readonly="true"/>
             </insert>
