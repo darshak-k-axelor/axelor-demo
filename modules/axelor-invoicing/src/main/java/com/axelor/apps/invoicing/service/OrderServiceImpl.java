@@ -52,13 +52,13 @@ public class OrderServiceImpl implements OrderService{
         currentInvoice.setStateSelect(currentOrder.getStateSelect());
         currentInvoice.setExTaxTotal(currentOrder.getExTaxTotal());
         currentInvoice.setTotal(currentOrder.getTotal());
-        currentInvoice.setStateSelect(OrderRepository.STATUS_INVOICE_GENERATED);
-
+        currentInvoice.setStateSelect(OrderRepository.STATUS_DRAFT);
 
         currentOrder.setBillingDate(LocalDate.now());
         currentOrder.setInvoice(currentInvoice);
         currentOrder.setStateSelect(OrderRepository.STATUS_INVOICE_GENERATED);
 
+        System.out.println(currentInvoice.getInvoiceLineList());
 
         orderRepository.save(currentOrder);
         invoiceRepository.save(currentInvoice);
@@ -71,6 +71,7 @@ public class OrderServiceImpl implements OrderService{
 //            ObjectMapper mapper = new ObjectMapper();
 //            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 //            InvoiceLine invoiceLine = mapper.convertValue(orderLine, InvoiceLine.class);
+//            System.out.println(orderLine);
             InvoiceLine invoiceLine = new InvoiceLine();
             invoiceLine.setInvoice(invoice);
             invoiceLine.setProduct(orderLine.getProduct());

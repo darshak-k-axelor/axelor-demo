@@ -7,13 +7,13 @@
           title="Invoice Lines"
           model="com.axelor.apps.invoicing.db.InvoiceLine">
 
-        <field name="product" title="Product" grid-view="product-grid" form-view="product-form"/>
+        <field name="product" title="Product" grid-view="product-grid" form-view="product-form" />
         <field name="description" />
-        <field name="qty" title="Quantity" precision="8" scale="2"/>
-        <field name="unitPrice"  precision="8" scale="2"/>
-        <field name="exTaxTotal" title="Total without tax" precision="8" scale="2"/>
-        <field name="taxRate"  precision="8" scale="2"/>
-        <field name="total"  precision="8" scale="2"/>
+        <field name="qty" title="Quantity" />
+        <field name="unitPrice" />
+        <field name="exTaxTotal" title="Total without tax" />
+        <field name="taxRate" />
+        <field name="total" />
 
     </grid>
 

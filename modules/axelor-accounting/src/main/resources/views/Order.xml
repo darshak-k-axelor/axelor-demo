@@ -18,7 +18,7 @@
 
         <extend target="//panel[@name='generalDetailsPanel']">
             <insert position="inside">
-                <field name="customerAccount" title="Customer Account" grid-view="accounting-account-grid" form-view="accounting-account-form"/>
+                <field name="customerAccount" title="Customer Account" grid-view="accounting-account-grid" form-view="accounting-account-form" canNew="true"/>
             </insert>
         </extend>
 

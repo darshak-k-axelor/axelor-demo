@@ -12,7 +12,7 @@
     >
         <extend target="//field[@name='total']">
             <insert position="after">
-                <field name="account" title="Account"/>
+                <field name="invoiceLineAccount" title="Account"/>
             </insert>
         </extend>
     </grid>
@@ -23,14 +23,22 @@
           id="accounting-invoicing-invoiceLine-form"
           extension="true"
     >
+        <extend target="//panel[@name='overviewPanel']/panel[@name='productOverviewPanel']/field[@name='product']">
+            <attribute name="onChange" value="action-accounting-method-invoiceLine-onchange"/>
+        </extend>
 
         <extend target="//panel[@name='overviewPanel']/field[@name='total']">
             <insert position="after">
-                <field name="account" title="Account"/>
+                <field name="invoiceLineAccount" title="Account" form-view="accounting-account-form" grid-view="accounting-account-grid" readonly="true"/>
             </insert>
         </extend>
 
     </form>
+
+
+    <action-method name="action-accounting-method-invoiceLine-onchange">
+        <call class="com.axelor.apps.accounting.web.InvoiceLineAccountingController" method="setDefaultInvoiceLineAccount"/>
+    </action-method>
 
 
 </object-views>

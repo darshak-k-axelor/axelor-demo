@@ -42,7 +42,11 @@ public class InvoiceController {
         response.setValue("total", exTaxTotalResult);
     }
     public void setStateSelectToValidate(ActionRequest request, ActionResponse response){
-        response.setValue("stateSelect", 1);
+        Context ctx = request.getContext();
+        Invoice invoice = ctx.asType(Invoice.class);
+        invoiceService.setStateSelectToValidate(invoice);
+
+        response.setReload(true);
     }
 
 }

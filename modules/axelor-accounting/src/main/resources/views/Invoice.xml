@@ -14,7 +14,7 @@
         <extend target="//panel[@name='actionsPanel']">
             <insert position="inside">
                 <button name="generateAccountingEntryBtn" title="Generate Accounting Entry"
-                        onClick="action-accounting-invoice-method-generate-accounting-entry" icon="fa-plus" />
+                        onClick="action-accounting-invoice-method-generate-accounting-entry" icon="fa-plus" showIf="stateSelect >= 1"/>
             </insert>
         </extend>
     </form>
@@ -24,12 +24,12 @@
     </action-group>
 
     <action-method name="action-accounting-invoicing-invoice-method-check-empty-invoiceLine">
-        <call class="com.axelor.apps.accounting.web.InvoiceController" method="checkEmptyAccountInInvoiceLines"/>
+        <call class="com.axelor.apps.accounting.web.InvoiceAccountingController" method="checkEmptyAccountInInvoiceLines"/>
     </action-method>
 
 
     <action-method name="action-accounting-invoice-method-generate-accounting-entry">
-        <call class="com.axelor.apps.accounting.web.InvoiceController" method="generateAccountingEntryForInvoice"/>
+        <call class="com.axelor.apps.accounting.web.InvoiceAccountingController" method="generateAccountingEntryForInvoice"/>
     </action-method>
 
 </object-views>
