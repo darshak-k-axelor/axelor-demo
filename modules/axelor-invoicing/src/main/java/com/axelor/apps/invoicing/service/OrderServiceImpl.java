@@ -52,7 +52,6 @@ public class OrderServiceImpl implements OrderService{
         currentInvoice.setStateSelect(currentOrder.getStateSelect());
         currentInvoice.setExTaxTotal(currentOrder.getExTaxTotal());
         currentInvoice.setTotal(currentOrder.getTotal());
-        currentInvoice.setStateSelect(OrderRepository.STATUS_DRAFT);
 
         currentOrder.setBillingDate(LocalDate.now());
         currentOrder.setInvoice(currentInvoice);

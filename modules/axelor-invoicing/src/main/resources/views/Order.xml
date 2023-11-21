@@ -50,10 +50,16 @@
         <extend target="//panel[@name='actionsPanel']">
             <insert position="inside">
                 <button name="generateInvoiceBtn" title="Generate Invoice"
-                        onClick="action-invoicing-method-add-invoice,save" icon="fa-plus" hideIf="stateSelect != 1 || invoice != null"/>
+                        onClick="action-invoicing-group-add-invoice" icon="fa-plus" hideIf="stateSelect != 1 || invoice != null"/>
             </insert>
         </extend>
     </form>
+
+    <action-group name="action-invoicing-group-add-invoice">
+        <action name="action-invoicing-method-add-invoice" />
+<!--        <action name="action-invoicing-invoice-group-validate-btn" />-->
+        <action name="save" />
+    </action-group>
 
     <action-method name="action-invoicing-method-add-invoice">
         <call class="com.axelor.apps.invoicing.web.OrderController" method="addInvoice"/>
