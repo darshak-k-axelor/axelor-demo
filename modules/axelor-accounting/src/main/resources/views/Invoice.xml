@@ -17,6 +17,12 @@
                         onClick="action-accounting-invoice-method-generate-accounting-entry" icon="fa-plus" showIf="stateSelect >= 1" readonlyIf="stateSelect >= 2"/>
             </insert>
         </extend>
+
+        <extend target="//panel[@name='mainPanel']/panel[@name='invoiceInfoPanel']/field[@name='total']">
+            <insert position="after">
+                <field name="invoiceAccountingEntry" readonly="true"/>
+            </insert>
+        </extend>
     </form>
 
     <action-group name="action-accounting-group-validate-invoice">

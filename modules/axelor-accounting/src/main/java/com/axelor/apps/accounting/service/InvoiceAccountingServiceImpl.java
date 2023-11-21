@@ -56,6 +56,7 @@ public class InvoiceAccountingServiceImpl extends InvoiceServiceImpl implements 
             accountingEntry.setAccountingEntryLineList(accountingEntryLineList);
 
             currentInvoice.setStateSelect(InvoiceRepository.STATUS_ACCOUNTING_ENTRY_GENERATED);
+            currentInvoice.setInvoiceAccountingEntry(accountingEntry);
 
             invoiceRepository.save(currentInvoice);
             accountingEntryManagementRepository.save(accountingEntry);
