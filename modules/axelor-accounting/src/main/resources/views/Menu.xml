@@ -43,4 +43,21 @@
         <view type="form" name="accounting-accountingEntryLine-form"/>
     </action-view>
 
+
+    <menuitem name="menu-accounting-root-productFamily" parent="menu-accounting-root"
+              title="Product Family" action="accounting.root.productFamily.all" icon="fa-product-hunt"  icon-background="#e0a83c"/>
+
+    <action-view name="accounting.root.productFamily.all" title="Product Family" model="com.axelor.apps.accounting.db.ProductFamily">
+        <view type="grid" name="accounting-productFamily-grid"/>
+        <view type="form" name="accounting-productFamily-form"/>
+    </action-view>
+
+
+    <menuitem name="menu-accounting-root-reporting-dashboard-1" parent="menu-accounting-root"
+              title="Dashboards" action="accounting.reporting.dashboard.view" order="100" icon="fa-tachometer"  icon-background="#e0a83c"/>
+
+    <action-view name="accounting.reporting.dashboard.view" title="Reporting Dashboard">
+        <view type="dashboard" name="accounting.reporting.dashboard.sample"/>
+    </action-view>
+
 </object-views>

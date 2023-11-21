@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+<!--    <action-record model="com.axelor.studio.db.AppBase"-->
+<!--                   name="action.base.chart.set.date.6m">-->
+<!--        <field name="toDate" expr="eval:LocalDate.parse(todayDate)"/>-->
+<!--        <field name="fromDate" expr="eval:LocalDate.parse(todayDate).minusMonths(1)"/>-->
+<!--        <field name="monthSelect" expr="eval:6"/>-->
+<!--    </action-record>-->
+
+
+    <chart name="chart.distribution.sales.by.product.over.duration" title="Distribution of Sales By Product">
+        <search-fields>
+            <field name="fromDate" type="date" title="From Date"/>
+            <field name="toDate" type="date" title="To Date"/>
+        </search-fields>
+        <dataset type="jpql">
+            <![CDATA[
+			    SELECT
+                    _product.name AS names,
+                    SUM(_orderLine.qty) AS quantity
+                FROM
+                    Order self
+                INNER JOIN
+                    OrderLine _orderLine
+                    ON self.id = _orderLine.productOrder
+                LEFT JOIN
+                    Product _product
+                    ON _orderLine.product = _product.id
+                Where
+                   self.orderDate >=  :fromDate
+                   AND self.orderDate <= :toDate
+                Group by
+                    _product.name
+		    ]]>
+        </dataset>
+        <category key="names" type="text" title="Product Categories"/>
+        <series key="quantity" type="bar" title="Quantity"/>
+    </chart>
+
+    <chart name="chart.number.qty.sold.per.productFamily" title="Number of quantities sold per product family">
+        <dataset type="jpql">
+            <![CDATA[
+			    SELECT
+                    pf.name AS productFamilyName,
+                    SUM(_orderLine.qty) AS quantity
+                FROM
+                    OrderLine AS _orderLine
+                LEFT JOIN
+                    Product AS product
+                    ON _orderLine.product = product.id
+                LEFT JOIN
+                    ProductFamily AS pf
+                    ON product.productFamily = pf.id
+                GROUP BY
+                    pf.name
+                ORDER BY
+                    pf.name
+
+		    ]]>
+        </dataset>
+        <category key="productFamilyName" type="text" title="Product Family Names"/>
+        <series key="quantity" type="hbar" title="Quantity"/>
+    </chart>
+
+    <chart name="chart.accounting.balance" title="Accounting Balance">
+        <dataset type="jpql">
+            <![CDATA[
+			    SELECT
+                    acc.fullName AS accountFullName,
+                    (SUM(accEntryLine.debit) - SUM(accEntryLine.credit)) AS balance
+                FROM
+                    AccountingEntryLine AS accEntryLine
+                    INNER JOIN
+                    Account acc
+                    ON acc.id = accEntryLine.account
+                GROUP BY
+                    acc.fullName
+                ORDER BY
+                    acc.fullName
+		    ]]>
+        </dataset>
+        <category key="accountFullName" type="text" title="Account Name"/>
+        <series key="balance" type="bar" title="Balance(Debit - Credit)"/>
+    </chart>
+
+</object-views>

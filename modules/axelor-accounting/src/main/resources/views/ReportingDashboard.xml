@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <dashboard title="Dashboard" name="accounting.reporting.dashboard.sample">
+        <dashlet action="dashlet.sales.per.product.for.month" height="350" colSpan="12"/>
+        <dashlet action="dashlet.accounting.qty.sold.per.productFamily" height="350" colSpan="12"/>
+
+        <dashlet action="dashlet.orders.toBeInvoiced" height="350" colSpan="12"/>
+        <dashlet action="dashlet.invoices.toValidated" height="350" colSpan="12"/>
+        <dashlet action="dashlet.account.accounting.balance" height="350" colSpan="12"/>
+    </dashboard>
+
+    <action-view name="dashlet.account.accounting.balance" title="Accounting Balance">
+        <view type="chart" name="chart.accounting.balance"/>
+    </action-view>
+
+    <action-view name="dashlet.orders.toBeInvoiced" title="To BE Invoiced" model="com.axelor.apps.sales.db.Order">
+        <view type="grid" name="order-grid"/>
+        <view type="form" name="orders-form"/>
+        <domain> self.invoice = null </domain>
+    </action-view>
+
+    <action-view name="dashlet.invoices.toValidated" title="To Validated" model="com.axelor.apps.invoicing.db.Invoice">
+        <view type="grid" name="invoicing-grid"/>
+        <view type="form" name="invoicing-form"/>
+        <domain> self.stateSelect != 1 </domain>
+    </action-view>
+
+    <action-view name="dashlet.sales.per.product.for.month" title="Distribution of Sales By Product">
+        <view type="chart" name="chart.distribution.sales.by.product.over.duration"/>
+    </action-view>
+
+    <action-view name="dashlet.accounting.qty.sold.per.productFamily" title="Distribution of Sales By Product">
+        <view type="chart" name="chart.number.qty.sold.per.productFamily"/>
+    </action-view>
+</object-views>
+
