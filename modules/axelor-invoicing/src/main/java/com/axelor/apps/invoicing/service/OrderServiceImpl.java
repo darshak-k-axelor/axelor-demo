@@ -48,7 +48,6 @@ public class OrderServiceImpl implements OrderService{
         currentInvoice.setOrders(currentOrder);
         currentInvoice.setInvoiceLineList(generatedInvoiceLineList);
         currentInvoice.setCustomer(currentOrder.getCustomer());
-        currentInvoice.setInvoiceDate(LocalDate.now());
         currentInvoice.setStateSelect(currentOrder.getStateSelect());
         currentInvoice.setExTaxTotal(currentOrder.getExTaxTotal());
         currentInvoice.setTotal(currentOrder.getTotal());

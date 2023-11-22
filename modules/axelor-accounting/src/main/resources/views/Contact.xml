@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <form name="contact-form"
+            title="Contact"
+            model="com.axelor.apps.contact.db.Contact"
+            id="accounting-contact-form"
+            extension="true"
+    >
+        <extend target="//panel[@name='postalAddressesPanel']">
+            <insert position="after">
+                <panel title="Customer Invoice" name="contactListInvoicePanel" colSpan="12" showIf="id">
+                    <panel-dashlet action="action-accounting-view-list-customer-invoices"
+                                   title="Contact Invoices" height="300" colSpan="12"/>
+                </panel>
+            </insert>
+        </extend>
+
+        <extend target="//panel[@name='postalAddressesPanel']">
+            <insert position="after">
+                <panel title="Customer validated invoices - last 3 months" name="contactAccountingPanel" colSpan="12" showIf="id">
+                    <panel-dashlet action="action-accounting-validated-invoice-for-last3-months"
+                                   title="Contact Invoices Graph" height="300" colSpan="12"/>
+                </panel>
+            </insert>
+        </extend>
+
+
+    </form>
+
+    <action-view name="action-accounting-validated-invoice-for-last3-months"  title="Customer validated invoices - last 3 months" model="com.axelor.apps.invoicing.db.Invoice" >
+        <view type="chart" name="chart.validated.invoice.last3.months" />
+        <domain><![CDATA[
+            self.customer = : _contactId
+        ]]>
+        </domain>
+        <context name="_contactId" expr="eval:id"/>
+    </action-view>
+
+    <action-view name="action-accounting-view-list-customer-invoices"  title="Customer Invoices" model="com.axelor.apps.invoicing.db.Invoice" >
+        <view type="grid" name="invoicing-grid" />
+        <view type="form" name="invoicing-form" />
+        <domain><![CDATA[
+            self.customer = : _contactId
+        ]]>
+        </domain>
+        <context name="_contactId" expr="eval: __this__.id"/>
+    </action-view>
+</object-views>
