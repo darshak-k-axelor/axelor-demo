@@ -6,10 +6,10 @@
     <dashboard title="Dashboard" name="accounting.reporting.dashboard.sample">
         <dashlet action="dashlet.sales.per.product.for.month" height="350" colSpan="12"/>
         <dashlet action="dashlet.accounting.qty.sold.per.productFamily" height="350" colSpan="12"/>
+        <dashlet action="dashlet.account.accounting.balance" height="350" colSpan="12"/>
 
         <dashlet action="dashlet.orders.toBeInvoiced" height="350" colSpan="12"/>
         <dashlet action="dashlet.invoices.toValidated" height="350" colSpan="12"/>
-        <dashlet action="dashlet.account.accounting.balance" height="350" colSpan="12"/>
     </dashboard>
 
     <action-view name="dashlet.account.accounting.balance" title="Accounting Balance">
@@ -17,8 +17,8 @@
     </action-view>
 
     <action-view name="dashlet.orders.toBeInvoiced" title="To BE Invoiced" model="com.axelor.apps.sales.db.Order">
-        <view type="grid" name="order-grid"/>
-        <view type="form" name="orders-form"/>
+        <view type="grid" name="accounting-dashboard-order-grid"/>
+        <view type="form" name="order-form"/>
         <domain> self.invoice = null </domain>
     </action-view>
 

@@ -4,13 +4,27 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
 
-<grid name="order-grid" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
+    <grid name="order-grid" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
           id="accounting-order-grid" extension="true">
         <extend target="/">
             <insert position="after">
                 <field name="customerAccount" />
             </insert>
         </extend>
+        <extend target="/">
+            <attribute name="" value="" />
+        </extend>
+    </grid>
+
+    <grid name="accounting-dashboard-order-grid" title="Invoice Orders" model="com.axelor.apps.sales.db.Order" >
+        <hilite if="$moment(todayDate).diff(forecastBillingDate) &gt; 0" background="danger"/>
+        <field name="customer" form-view="contact-form" grid-view="contact-grid"/>
+        <field name="orderDate" />
+        <field name="forecastBillingDate" />
+        <field name="exTaxTotal" />
+        <field name="total" />
+        <field name="stateSelect" />
+        <field name="customerAccount" grid-view="accounting-account-grid" form-view="accounting-account-form"/>
     </grid>
 
     <form name="order-form" title="Invoice Orders" model="com.axelor.apps.sales.db.Order"
