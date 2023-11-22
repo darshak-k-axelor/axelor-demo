@@ -87,9 +87,8 @@
     </chart>
 
     <chart name="chart.validated.invoice.last3.months" title="Customer Validate Invoice Amount"
-           >
-<!--        onInit="action-customer-set-today-date"-->
-<!--    >-->
+        onInit="action-customer-set-today-date"
+    >
         <search-fields>
             <field type="date"  name="fromDate" expr="eval:LocalDate.parse(todayDate).minusMonths(3)"/>
             <field type="date"  name="toDate" expr="eval:LocalDate.parse(todayDate)"/>
@@ -114,11 +113,10 @@
         <series key="totalAmount" type="hbar" title="Amount"/>
     </chart>
 
-<!--    <action-record name="action-customer-set-today-date"-->
-<!--                   model="com.axelor.apps.invoicing.db.Invoice">-->
-<!--        <field name="todayDate" expr="eval:__config__.date"/>-->
-<!--        <field name="fromDate"  expr="eval:LocalDate.parse(todayDate).minusMonths(3)" />-->
-<!--        <field name="toDate" expr="eval:__config__.date"/>-->
-<!--    </action-record>-->
+    <action-record name="action-customer-set-today-date"
+                   model="com.axelor.apps.invoicing.db.Invoice">
+        <field name="fromDate"  expr="eval:__date__.minusMonths(3)" />
+        <field name="toDate" expr="eval:__date__"/>
+    </action-record>
 
 </object-views>
