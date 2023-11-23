@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="event" package="com.axelor.apps.events.db"/>
+
+    <entity name="Event">
+        <string name="subject" title="Subject"/>
+        <string name="content" title="Content" large="true"/>
+
+        <datetime name="startDateT" title="Start Date/Time"/>
+        <datetime name="endDateT" title="End Date/Time"/>
+
+        <long name="duration" title="Duration"/>
+        <integer name="status" title="Status"/>
+
+        <many-to-one name="eventUser" title="Assigned to" ref="com.axelor.auth.db.User"/>
+        <datetime name="deadlineDateT" title="Deadline Date/Time"/>
+
+        <string name="associatedToTypeSelect" title="Associated to" selection="events.event.associated.to.select"/>
+
+        <extra-code>
+            <![CDATA[
+                // TYPE SELECT
+                public static final String TYPE_CONTACT= "com.axelor.apps.contact.db.Contact";
+                public static final String TYPE_PRODUCT = "com.axelor.apps.sales.db.Product";
+            ]]>
+        </extra-code>
+
+    </entity>
+
+</domain-models>

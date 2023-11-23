@@ -8,5 +8,6 @@ axelor {
 }
 
 dependencies {
-    api project(":modules:axelor-accounting")
+    api project(":modules:axelor-contact")
+    api project(":modules:axelor-sales")
 }

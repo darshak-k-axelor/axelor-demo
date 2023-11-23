@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <grid name="events-event-grid"
+          title="Events"
+          model="com.axelor.apps.events.db.Event">
+
+        <field name="subject"/>
+        <field name="startDateT" />
+        <field name="endDateT" />
+        <field name="duration" widget="duration"/>
+        <field name="status" widget="NavSelect" selection="events.event.status.select"/>
+        <field name="content" />
+
+    </grid>
+
+    <form name="events-event-form"
+          title="Events"
+          model="com.axelor.apps.events.db.Event"
+          width="large"
+    >
+        <panel name="statusPanel" showTitle="false">
+            <field name="status" widget="NavSelect" selection="events.event.status.select" readonly="true"/>
+        </panel>
+
+        <panel name="eventsMainPanel" title="Main Panel" showTitle="false">
+            <field name="subject" title="Subject" required="true"/>
+            <field name="content" title="Content" widget="html"/>
+        </panel>
+        <panel name="eventsDetailsPanel" title="Event Details Panel">
+            <field name="eventUser" title="User" grid-view="user-grid" form-view="user-form" required="true"/>
+            <field name="startDateT" />
+            <field name="endDateT" />
+            <field name="duration" widget="duration" readonly="true"/>
+            <field name="deadlineDateT" required="true"/>
+            <field name="associatedToTypeSelect" required="true" selection="events.event.associated.to.select" widget="RefSelect" />
+        </panel>
+    </form>
+
+
+</object-views>

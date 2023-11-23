@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <menuitem name="events-root"
+              title="Event" icon="fa-calendar" icon-background="#14d5f4"/>
+
+    <menuitem name="events-root-event"
+              parent="events-root"
+              title="Events"
+              action="events.root.events.all"
+              icon="fa-calendar"
+              icon-background="#14d5f4"
+    />
+
+    <action-view name="events.root.events.all"
+                 title="Events"
+                 model="com.axelor.apps.events.db.Event"
+
+    >
+        <view type="grid" name="events-event-grid"/>
+        <view type="form" name="events-event-form"/>
+    </action-view>
+
+    <menuitem name="events-root-calendar-event"
+              parent="events-root"
+              title="Events Calendar"
+              action="events.root.calendar.events.all"
+              icon="fa-gg"
+              icon-background="#14d5f4"
+    />
+
+    <action-view name="events.root.calendar.events.all"
+                 title="Events Calendar"
+                 model="com.axelor.apps.events.db.Event"
+
+    >
+        <view type="grid" name="events-event-grid"/>
+        <view type="form" name="events-event-form"/>
+    </action-view>
+
+    <menuitem name="events-root-today-event"
+              title="Today's Events"
+              parent="events-root"
+              action="events.root.today.event"
+              icon="fa-handshake-o"
+              icon-background="#14d5f4"
+    />
+
+    <action-view name="events.root.today.event"
+                 title="Today's Events"
+                 model="com.axelor.apps.events.db.Event"
+
+    >
+        <view type="grid" name="events-event-grid"/>
+        <view type="form" name="events-event-form"/>
+    </action-view>
+
+    <menuitem name="events-my-event-of-the-day"
+              title="My events of the Day"
+              parent="events-root"
+              action="events.root.my.events.of.the.day"
+              icon="fa-meetup"
+              icon-background="#14d5f4"
+    />
+
+    <action-view name="events.root.my.events.of.the.day"
+                 title="My events of the Day"
+                 model="com.axelor.apps.events.db.Event"
+
+    >
+        <view type="grid" name="events-event-grid"/>
+        <view type="form" name="events-event-form"/>
+    </action-view>
+
+    <menuitem name="dashboard-events-my-dashboard"
+              title="Dashboards"
+              parent="events-root"
+              action="events.root.dashboard.my.dashboard"
+              icon="fa-tachometer"
+              icon-background="#14d5f4"
+    />
+
+    <action-view name="events.root.dashboard.my.dashboard"
+                 title="Dashboards"
+                 model="com.axelor.apps.events.db.Event"
+
+    >
+        <view type="grid" name="events-event-grid"/>
+        <view type="form" name="events-event-form"/>
+    </action-view>
+
+</object-views>
