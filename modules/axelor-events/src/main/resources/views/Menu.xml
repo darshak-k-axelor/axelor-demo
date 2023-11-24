@@ -10,7 +10,7 @@
               parent="events-root"
               title="Events"
               action="events.root.events.all"
-              icon="fa-calendar"
+              icon="fa-podcast"
               icon-background="#14d5f4"
     />
 
@@ -36,8 +36,7 @@
                  model="com.axelor.apps.events.db.Event"
 
     >
-        <view type="grid" name="events-event-grid"/>
-        <view type="form" name="events-event-form"/>
+        <view type="calendar" name="event-calendar-color-by-status"/>
     </action-view>
 
     <menuitem name="events-root-today-event"
@@ -55,6 +54,11 @@
     >
         <view type="grid" name="events-event-grid"/>
         <view type="form" name="events-event-form"/>
+        <domain>
+            <![CDATA[
+                DATE(self.startDateT) = CURRENT_DATE
+            ]]>
+        </domain>
     </action-view>
 
     <menuitem name="events-my-event-of-the-day"
@@ -72,6 +76,13 @@
     >
         <view type="grid" name="events-event-grid"/>
         <view type="form" name="events-event-form"/>
+        <domain>
+            <![CDATA[
+                DATE(self.startDateT) <= CURRENT_DATE
+                AND self.eventUser.id = :_userId
+            ]]>
+        </domain>
+        <context name="_userId" expr="eval:__user__.id"/>
     </action-view>
 
     <menuitem name="dashboard-events-my-dashboard"
@@ -89,6 +100,7 @@
     >
         <view type="grid" name="events-event-grid"/>
         <view type="form" name="events-event-form"/>
+
     </action-view>
 
 </object-views>

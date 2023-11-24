@@ -3,9 +3,21 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
 
-    <grid name="events-event-grid"
-          title="Events"
-          model="com.axelor.apps.events.db.Event">
+    <calendar name="event-calendar-color-by-status" title="Meetings" mode="month"
+              colorBy="status" eventStart="startDateT" eventStop="endDateT" eventLength="1"
+              model="com.axelor.apps.events.db.Event" >
+        <field name="eventUser"/>
+        <field name="content"/>
+    </calendar>
+
+    <grid title="Events" name="events-event-grid" model="com.axelor.apps.events.db.Event">
+        <hilite if="status == 1 &amp;&amp; $moment(deadlineDate).diff(todayDateTime) &lt; 0" background="danger"/>
+        <hilite if="status == 2" background="green"/>
+
+        <button name="startBtn" help="Start" onClick="save" icon="fa-play-circle" readonlyIf="status != 0"/>
+        <button name="endBtn" help="End" onClick="save" icon="fa-check-square-o" readonlyIf="status != 1"/>
+        <button name="postponeBtn" help="Postpone" onClick="save" icon="fa-pause"  readonlyIf="status != 1"/>
+        <button name="cancelBut" help="Cancel" onClick="save" icon="fa-ban" readonlyIf="status!= 1 &amp;&amp; status != 4"/>
 
         <field name="subject"/>
         <field name="startDateT" />
@@ -13,7 +25,6 @@
         <field name="duration" widget="duration"/>
         <field name="status" widget="NavSelect" selection="events.event.status.select"/>
         <field name="content" />
-
     </grid>
 
     <form name="events-event-form"
@@ -21,6 +32,12 @@
           model="com.axelor.apps.events.db.Event"
           width="large"
     >
+        <toolbar>
+            <button name="startBtn" help="Start" onClick="" icon="fa-play-circle" readonlyIf="status != 0"/>
+            <button name="endBtn" help="End" onClick="" icon="fa-check-square-o" readonlyIf="status != 1"/>
+            <button name="postponeBtn" help="Postpone" onClick="" icon="fa-pause"  readonlyIf="status != 1"/>
+            <button name="cancelBut" help="Cancel" onClick="" icon="fa-ban" readonlyIf="status!= 1 &amp;&amp; status != 4"/>
+        </toolbar>
         <panel name="statusPanel" showTitle="false">
             <field name="status" widget="NavSelect" selection="events.event.status.select" readonly="true"/>
         </panel>
