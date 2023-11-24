@@ -98,9 +98,7 @@
                  model="com.axelor.apps.events.db.Event"
 
     >
-        <view type="grid" name="events-event-grid"/>
-        <view type="form" name="events-event-form"/>
-
+        <view type="dashboard" name="events.reporting.dashboard.sample"/>
     </action-view>
 
 </object-views>

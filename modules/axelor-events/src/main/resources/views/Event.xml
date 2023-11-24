@@ -7,17 +7,17 @@
               colorBy="status" eventStart="startDateT" eventStop="endDateT" eventLength="1"
               model="com.axelor.apps.events.db.Event" >
         <field name="eventUser"/>
-        <field name="content"/>
+        <field name="subject"/>
     </calendar>
 
     <grid title="Events" name="events-event-grid" model="com.axelor.apps.events.db.Event">
         <hilite if="status == 1 &amp;&amp; $moment(deadlineDate).diff(todayDateTime) &lt; 0" background="danger"/>
         <hilite if="status == 2" background="green"/>
 
-        <button name="startBtn" help="Start" onClick="save" icon="fa-play-circle" readonlyIf="status != 0"/>
-        <button name="endBtn" help="End" onClick="save" icon="fa-check-square-o" readonlyIf="status != 1"/>
-        <button name="postponeBtn" help="Postpone" onClick="save" icon="fa-pause"  readonlyIf="status != 1"/>
-        <button name="cancelBut" help="Cancel" onClick="save" icon="fa-ban" readonlyIf="status!= 1 &amp;&amp; status != 4"/>
+        <button name="startBtn" help="Start" onClick="action-events-group-start-event" icon="fa-play-circle" readonlyIf="status != 0"/>
+        <button name="endBtn" help="End" onClick="action-events-group-end-event" icon="fa-check-square-o" readonlyIf="status != 1"/>
+        <button name="postponeBtn" help="Postpone" onClick="action-events-group-postpone-event" icon="fa-pause"  readonlyIf="status!= 1 &amp;&amp; status != 4"/>
+        <button name="cancelBut" help="Cancel" onClick="action-events-group-cancel-event" icon="fa-ban" readonlyIf="status!= 1 &amp;&amp; status != 4"/>
 
         <field name="subject"/>
         <field name="startDateT" />
@@ -33,10 +33,10 @@
           width="large"
     >
         <toolbar>
-            <button name="startBtn" help="Start" onClick="" icon="fa-play-circle" readonlyIf="status != 0"/>
-            <button name="endBtn" help="End" onClick="" icon="fa-check-square-o" readonlyIf="status != 1"/>
-            <button name="postponeBtn" help="Postpone" onClick="" icon="fa-pause"  readonlyIf="status != 1"/>
-            <button name="cancelBut" help="Cancel" onClick="" icon="fa-ban" readonlyIf="status!= 1 &amp;&amp; status != 4"/>
+            <button name="startBtn" help="Start" onClick="action-events-group-start-event" icon="fa-play-circle" readonlyIf="status != 0"/>
+            <button name="endBtn" help="End" onClick="action-events-group-end-event" icon="fa-check-square-o" readonlyIf="status != 1"/>
+            <button name="postponeBtn" help="Postpone" onClick="action-events-group-postpone-event" icon="fa-pause"  readonlyIf="status!= 1 &amp;&amp; status != 4"/>
+            <button name="cancelBut" help="Cancel" onClick="action-events-group-cancel-event" icon="fa-ban" readonlyIf="status!= 1 &amp;&amp; status != 4"/>
         </toolbar>
         <panel name="statusPanel" showTitle="false">
             <field name="status" widget="NavSelect" selection="events.event.status.select" readonly="true"/>
@@ -55,6 +55,41 @@
             <field name="associatedToTypeSelect" required="true" selection="events.event.associated.to.select" widget="RefSelect" />
         </panel>
     </form>
+    
+    <action-group name="action-events-group-start-event">
+        <action name="action-events-method-start-event"/>
+        <action name="save" />
+    </action-group>
 
+    <action-group name="action-events-group-end-event">
+        <action name="action-events-method-end-event"/>
+        <action name="save" />
+    </action-group>
+
+    <action-group name="action-events-group-postpone-event">
+        <action name="action-events-method-postpone-event"/>
+        <action name="save" />
+    </action-group>
+
+    <action-group name="action-events-group-cancel-event">
+        <action name="action-events-method-cancel-event"/>
+        <action name="save" />
+    </action-group>
+
+    <action-method name="action-events-method-start-event">
+        <call class="com.axelor.apps.events.web.EventController" method="startEvent"/>
+    </action-method>
+
+    <action-method name="action-events-method-end-event">
+        <call class="com.axelor.apps.events.web.EventController" method="endEvent"/>
+    </action-method>
+
+    <action-method name="action-events-method-postpone-event">
+        <call class="com.axelor.apps.events.web.EventController" method="postponeEvent"/>
+    </action-method>
+
+    <action-method name="action-events-method-cancel-event">
+        <call class="com.axelor.apps.events.web.EventController" method="cancelEvent"/>
+    </action-method>
 
 </object-views>
