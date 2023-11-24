@@ -9,7 +9,7 @@
         <option value="0">Not Started</option>
         <option value="1">In Progress</option>
         <option value="2">Completed</option>
-        <option value="3">Canceled</option>
+        <option value="3">Cancelled</option>
     </selection>
 
     <selection name="events.event.associated.to.select">
