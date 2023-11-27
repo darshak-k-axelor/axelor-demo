@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+    <form title="Contact" name="contact-form"
+          id="events-contact-form" model="com.axelor.apps.contact.db.Contact" extension="true">
+        <extend target="//panel[@name='postalAddressesPanel']">
+            <insert position="after">
+                <panel title="Events" name="eventPanel" colSpan="12">
+                    <panel-dashlet action="dashlet.events.in.contact" name="eventDashlet" colSpan="12"/>
+                </panel>
+            </insert>
+        </extend>
+
+
+    </form>
+
+    <action-view name="dashlet.events.in.contact" title="Events" model="com.axelor.apps.events.db.Event">
+        <view type="grid" name="events-event-grid"/>
+        <view type="form" name="events-event-form"/>
+        <domain><![CDATA[
+            self.associatedToTypeSelect = :_type
+            AND self.eventUser.id = :_userId
+        ]]>
+
+        </domain>
+        <context name="_userId" expr="eval:__user__.id"/>
+        <context name="_type" expr="com.axelor.apps.contact.db.Contact"/>
+    </action-view>
+
+
+</object-views>
